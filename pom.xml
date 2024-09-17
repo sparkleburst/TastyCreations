@@ -58,18 +58,18 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- DEPENDENCIES FOR DISPLAYING JSPS AND USING JSTL TAGS -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>jakarta.servlet.jsp.jstl</groupId>
-			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.apache.tomcat.embed</groupId>-->
+<!--			<artifactId>tomcat-embed-jasper</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>jakarta.servlet.jsp.jstl</groupId>-->
+<!--			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.glassfish.web</groupId>-->
+<!--			<artifactId>jakarta.servlet.jsp.jstl</artifactId>-->
+<!--		</dependency>-->
 
 		<!-- DEPENDENCIES FOR INTEGRATING SQL DATABASE AND USING JPA -->
 		<!-- Note: Project will not run until a schema has been created and the
