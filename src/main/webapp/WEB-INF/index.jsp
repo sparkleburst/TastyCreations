@@ -23,13 +23,13 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-light">
+    <nav class="navbar navbar-light navbar-blur py-0">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="/images/Logo.webp" alt="" width="100" height="100" class="d-inline-block align-text-top">
-                <span class="text-dark" style="font-size: 1rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
+                <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
+                <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
                 <div class="d-flex">
-                    <a class="nav-link text-dark" style="font-size: 1rem; font-family: 'Playpen Sans', sans-serif;" href="#">Login</a>
+                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="#">Login</a>
                 </div>
             </a>
         </div>
@@ -38,21 +38,23 @@
 <main class="container mt-4">
     <div class="row">
         <!-- Left side content (you can add any content here) -->
-        <div class="col-md-9">
-            <h2 class="text-dark" style="font-size: 3rem; font-family: 'Playpen Sans', sans-serif;">Your Guide to Creating Delicious Meals!</h2>
-            <ul class="text-dark mt-lg-5" style="font-size: 1.5rem; font-family: 'Playpen Sans', sans-serif; list-style-type: none; padding-left: 0;">
+        <div class="col-md-5">
+            <h2 class="text-dark text-center" style="font-size: 2rem; font-family: 'Playpen Sans', sans-serif;">Your Guide to Creating Delicious Meals!</h2>
+            <ul class="text-dark text-center mt-lg-5" style="font-size: 1rem; font-family: 'Playpen Sans', sans-serif; list-style-type: none; padding-left: 0;">
                 <li>Find the perfect recipe.</li>
                 <li>Breakfast, lunch, or dinner.</li>
                 <li>Today, tomorrow, or every day.</li>
-
             </ul>
-            <div class="mt-5">
+            <div class="mt-5 text-center">
                 <button class="btn btn-lg btn-blur">Let's Start</button>
+            </div>
+            <div class="mt-5 text-center">
+                <button class="btn  btn-blur-2">The recipe of the day - no login required</button>
             </div>
         </div>
 
         <!-- Right side: Carousel -->
-        <div class="col-md-3">
+        <div class="col-md-7">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -61,13 +63,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active h-100">
-                        <img src="/images/Egg-White-Oatmeal2.webp" class="d-block w-100 h-100 object-fit-cover rounded-5" alt="Slide 1">
+                        <img src="/images/Egg-White-Oatmeal2.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 1">
                     </div>
                     <div class="carousel-item h-100">
-                        <img src="/images/oatmeal.webp" class="d-block w-100 h-100 object-fit-cover rounded-5" alt="Slide 2">
+                        <img src="/images/oatmeal.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 2">
                     </div>
                     <div class="carousel-item h-100">
-                        <img src="/images/Oatmeal-Recipe-4.webp" class="d-block w-100 h-100 object-fit-cover rounded-5" alt="Slide 3">
+                        <img src="/images/Oatmeal-Recipe-4.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
