@@ -16,7 +16,8 @@ public class RecipeController {
 
     @GetMapping("/recipes/dashboard")
     public String index(Model model) throws ApiException {
-        Object response = apiService.getRandomFoodJoke();
+        String ingredients = "apples,flour,sugar";
+        Object response = apiService.getRecipesByIngredients(ingredients);
         model.addAttribute("response", response);
 
         return "dashboard";
