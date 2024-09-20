@@ -59,3 +59,12 @@ body {
     background-color: rgba(255, 255, 255, 0.8); /* Darker background on hover */
     backdrop-filter: blur(15px); /* Increase blur on hover */
 }
+.card-blur {
+    background-color: rgba(255, 255, 255, 0.1); /* Light, transparent background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Add padding to make the content inside the card look better */
+}
+
+
