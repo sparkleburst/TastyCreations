@@ -56,7 +56,7 @@
                 <button class="btn  btn-blur-2">The recipe of the day - no login required</button>
             </div>
         </div>
-
+<%--test--%>
         <!-- Right side: Carousel -->
         <div class="col-md-7">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
