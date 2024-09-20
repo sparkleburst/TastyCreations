@@ -1,0 +1,61 @@
+body {
+    background-image: url('../images/newBG.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: makes the background stay in place */
+}
+
+.navbar-blur {
+    background-color: rgba(255, 255, 255, 0.1); /* Very light, transparent background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Optional border for separation */
+}
+
+
+.footer-icons svg use {
+    fill: black;
+}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.btn-blur {
+    background-color: rgba(211, 211, 211, 0.3); /* Transparent white */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
+    color: black; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 40px; /* Padding for the button */
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: 'Playpen Sans', sans-serif; /* Custom font */
+    transition: all 0.3s ease; /* Smooth hover transition */
+    animation: blink 1s infinite; /* Blinking effect */
+}
+.btn-blur-2 {
+    background-color: rgba(211, 211, 211, 0.3); /* Transparent white */
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
+    color: black; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 40px; /* Padding for the button */
+    font-size: .8rem;
+    font-weight: normal;
+    font-family: 'Playpen Sans', sans-serif; /* Custom font */
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.btn-blur:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Darker background on hover */
+    backdrop-filter: blur(15px); /* Increase blur on hover */
+}
