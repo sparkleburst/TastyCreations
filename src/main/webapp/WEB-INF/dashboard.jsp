@@ -21,7 +21,7 @@
   <h1 class="display-4 mb-3">Find Recipes by Ingredients</h1>
 
   <!-- Recipe Search Form -->
-  <form action="/searchRecipes" method="get">
+  <form action="/recipes/search" method="get">
     <div class="mb-3">
       <label for="ingredients" class="form-label">Enter ingredients (comma-separated):</label>
       <input type="text" class="form-control" id="ingredients" name="ingredients" placeholder="e.g., tomato, cheese, onion" required>
