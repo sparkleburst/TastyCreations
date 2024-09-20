@@ -10,6 +10,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -22,7 +23,7 @@ public class RecipeController {
     @Autowired
     private CacheManager cacheManager;  // Inject Spring's CacheManager
 
-    @GetMapping({"/recipes/dashboard", "/searchRecipes"})
+    @GetMapping({"/recipes/dashboard", "/recipes/search"})
     public String getRecipes(
             @RequestParam(value = "ingredients", required = false) String ingredients,
             Model model) {
@@ -51,5 +52,23 @@ public class RecipeController {
         }
 
         return "dashboard";  // Renders the dashboard.jsp
+    }
+
+    // Endpoint to get detailed recipe information by ID
+    @GetMapping("/recipes/{id}/information")
+    public String getRecipeInformation(@PathVariable("id") String recipeIdString, Model model) {
+        try {
+            // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
+            long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
+
+            Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
+            model.addAttribute("recipeInfo", recipeInfo);
+        } catch (ApiException e) {
+            model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            model.addAttribute("error", "Invalid recipe ID format: " + recipeIdString);
+        }
+
+        return "recipe-details";
     }
 }
