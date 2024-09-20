@@ -26,26 +26,7 @@ public class ApiService {
     @Value("${api.key}")
     private String apiKey;
 
-    @Cacheable("recipes")
-    public Object getRandomFoodJoke() throws ApiException {
-        logger.debug("Attempting to fetch a random food joke");
-
-        ApiClient apiClient = new ApiClient();
-        apiClient.addDefaultHeader("x-api-key", apiKey);
-        DefaultApi apiInstance = new DefaultApi(apiClient);
-
-        Object result = null;
-        try {
-            result = apiInstance.getARandomFoodJoke();
-            logger.debug("Random food joke received: {}", result);
-//            System.out.println(result);
-        } catch (ApiException e) {
-            logger.error("Error fetching random food joke: {}", e.getResponseBody(), e);
-//            System.err.println(e.getResponseBody());
-//            e.printStackTrace();
-        }
-        return result;
-    }
+    private final String BASE_URL = "https://api.spoonacular.com/recipes/";
 
     @Cacheable("recipes")
     public Object getRecipesByIngredients(String ingredients) throws ApiException {
@@ -72,6 +53,17 @@ public class ApiService {
 //            e.printStackTrace();
         }
         return result;
+    }
+
+    @Cacheable("recipes")
+    public Object getRecipeInformation(long recipeId, boolean includeNutrition) throws ApiException {
+        String url = BASE_URL + recipeId + "/information?includeNutrition=" + includeNutrition + "&apiKey=" + apiKey;
+
+        try {
+            return restTemplate.getForObject(url, Object.class);  // Remember that you can map the response to a more specific object instead of Object.class
+        } catch (Exception e) {
+            throw new ApiException();
+        }
     }
 
 }

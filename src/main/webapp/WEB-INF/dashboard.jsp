@@ -60,9 +60,8 @@
                   </c:forEach>
                 </ul>
 
-                <!-- Link to the full recipe -->
-                <a href="https://spoonacular.com/recipes/${recipe.title}-${recipe.id}" class="btn btn-primary" target="_blank">View Full Recipe</a>
-
+                <!-- Link to the recipe-details page -->
+                <a href="/recipes/${recipe.id}/information" class="btn btn-primary" target="_self">View Recipe Details</a>
               </div>
             </div>
           </div>
