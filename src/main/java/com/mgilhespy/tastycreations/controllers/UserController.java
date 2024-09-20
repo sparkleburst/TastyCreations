@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String index(@ModelAttribute("newUser") User newUser, @ModelAttribute("loginUser") LoginUser loginUser) {
-        return "login";
+        return "index";
     }
 
     @PostMapping("/register")
@@ -30,7 +30,7 @@ public class UserController {
         if (result.hasErrors()) {
             model.addAttribute("loginUser", new LoginUser());
             model.addAttribute("savedDate", newUser.getBirthDate());
-            return "login";
+            return "index";
         }
         session.setAttribute("userId", user.getId());
         return "redirect:/recipes/dashboard";
@@ -41,14 +41,14 @@ public class UserController {
         if (result.hasErrors()) {
             model.addAttribute("newUser", new User());
             model.addAttribute("loginUser", loginUser);
-            return "login";
+            return "index";
         }
 
         User potentialUser = this.userService.login(loginUser, result);
         if (potentialUser == null) {
             model.addAttribute("newUser", new User());
             model.addAttribute("loginUser", loginUser);
-            return "login";
+            return "index";
         }
 
         session.setAttribute("userId", potentialUser.getId());

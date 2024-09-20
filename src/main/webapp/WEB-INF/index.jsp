@@ -12,8 +12,10 @@
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Game Workshop Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+
+    <title>Tasty Creations</title>
+
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +31,9 @@
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
                 <div class="d-flex">
+
                     <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Login</a> <!-- this link goes to login.jsp -->
+
                 </div>
             </a>
         </div>
@@ -46,10 +50,12 @@
                 <li>Today, tomorrow, or every day.</li>
             </ul>
             <div class="mt-5 text-center">
+
                 <!-- this button goes to login.jsp -->
                 <form action="/login" method="get">
                     <button type="submit" class="btn btn-lg btn-blur">Let's Start</button>
-                </form>
+                </form>               
+
             </div>
             <div class="mt-5 text-center">
                 <button class="btn  btn-blur-2">The recipe of the day - no login required</button>
@@ -107,6 +113,7 @@
 </main>
 </body>
 <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
 </html>
 
 
