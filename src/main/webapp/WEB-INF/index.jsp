@@ -12,8 +12,10 @@
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+
     <title>Tasty Creations</title>
+
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +31,9 @@
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
                 <div class="d-flex">
-                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="#">Login</a>
+
+                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Login</a> <!-- this link goes to login.jsp -->
+
                 </div>
             </a>
         </div>
@@ -46,7 +50,12 @@
                 <li>Today, tomorrow, or every day.</li>
             </ul>
             <div class="mt-5 text-center">
-                <button class="btn btn-lg btn-blur">Let's Start</button>
+
+                <!-- this button goes to login.jsp -->
+                <form action="/login" method="get">
+                    <button type="submit" class="btn btn-lg btn-blur">Let's Start</button>
+                </form>               
+
             </div>
             <div class="mt-5 text-center">
                 <button class="btn  btn-blur-2">The recipe of the day - no login required</button>
@@ -84,86 +93,6 @@
         </div>
     </div>
 
-
-    <%--    <h1 class="display-4 mb-3">Login or Register for Our Site</h1>--%>
-    <%--    <div class="row">--%>
-    <%--        <div class="col">--%>
-    <%--            <h2 class="display-6 mb-3">Register</h2>--%>
-    <%--            <div class="card shadow mb-3">--%>
-    <%--                <div class="card-body">--%>
-    <%--                    <form:form action="/register" method="post" modelAttribute="newUser">--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="firstName">First Name:</form:label>--%>
-    <%--                            <form:input cssClass="form-control" path="firstName"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="firstName"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="lastName">Last Name:</form:label>--%>
-    <%--                            <form:input cssClass="form-control" path="lastName"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="lastName"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="email">Email:</form:label>--%>
-    <%--                            <form:input cssClass="form-control" path="email"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="email"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="birthDate">Date of Birth:</form:label>--%>
-    <%--                            <form:input type="date" cssClass="form-control" path="birthDate" value="${savedDate}"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="birthDate"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="password">Password:</form:label>--%>
-    <%--                            <form:input type="password" cssClass="form-control" path="password"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="password"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="confirmPassword">Confirm Password:</form:label>--%>
-    <%--                            <form:input type="password" cssClass="form-control" path="confirmPassword"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="confirmPassword"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <button type="submit" class="btn btn-primary w-100">Register</button>--%>
-    <%--                    </form:form>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <div class="col">--%>
-    <%--            <h2 class="display-6 mb-3">Login</h2>--%>
-    <%--            <div class="card shadow mb-3">--%>
-    <%--                <div class="card-body">--%>
-    <%--                    <form:form action="/login" method="post" modelAttribute="loginUser">--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="loginEmail">Email:</form:label>--%>
-    <%--                            <form:input cssClass="form-control" path="loginEmail"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                                    <form:errors path="loginEmail"/>--%>
-    <%--                                </span>--%>
-    <%--                        </div>--%>
-    <%--                        <div class="mb-3">--%>
-    <%--                            <form:label class="form-label" path="loginPassword">Password:</form:label>--%>
-    <%--                            <form:input type="password" cssClass="form-control" path="loginPassword"/>--%>
-    <%--                            <span class="form-text text-warning">--%>
-    <%--                <form:errors path="loginPassword"/>--%>
-    <%--            </span>--%>
-    <%--                        </div>--%>
-    <%--                        <button type="submit" class="btn btn-primary w-100">Login</button>--%>
-    <%--                    </form:form>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </div>--%>
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
@@ -180,10 +109,11 @@
             </ul>
         </footer>
     </div>
+
 </main>
 </body>
 <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-</body>
+
 </html>
 
 
