@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
+    @GetMapping("/login")
     public String index(@ModelAttribute("newUser") User newUser, @ModelAttribute("loginUser") LoginUser loginUser) {
         return "login";
     }
