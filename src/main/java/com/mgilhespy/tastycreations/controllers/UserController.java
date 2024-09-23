@@ -51,8 +51,7 @@ public class UserController {
             return "login";
         }
 
-        session.setAttribute("loggedInUser", potentialUser);
-
+        session.setAttribute("userId", potentialUser.getId());
         return "redirect:/recipes/dashboard";
     }
 

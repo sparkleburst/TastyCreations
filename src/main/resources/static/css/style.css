@@ -1,38 +1,9 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 body {
     background-image: url('../images/newBG.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* This makes the background stay in place */
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1; /* This makes the main content take up remaining space */
-    display: flex;
-    align-items: center; /* Vertically center content */
-    justify-content: center; /* Horizontally center content */
-    padding: 0; /* Remove any padding to reduce space */
-    margin: 0; /* Ensure there is no margin */
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 0; /* Remove margin above footer */
-}
-
-/* Transparent Navbar */
-.navbar {
-    background-color: transparent; /* Make the navbar transparent */
-    border: none; /* Remove any default borders */
-    padding: 20px; /* Add some padding for spacing */
+    background-attachment: fixed; /* Optional: makes the background stay in place */
 }
 
 .navbar-blur {
@@ -42,91 +13,58 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Optional border for separation */
 }
 
-/* Logo Styles */
-.navbar-logo {
-    width: 100px;
-    height: 100px;
-    object-fit: contain; /* Ensure the image maintains its aspect ratio */
-    margin-right: 20px; /* Adds space between logo and login button */
+
+.footer-icons svg use {
+    fill: black;
+}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
-/* Button Styles */
 .btn-blur {
-    background-color: rgba(211, 211, 211, 0.1); /* Transparent white */
+    background-color: rgba(211, 211, 211, 0.3); /* Transparent white */
     backdrop-filter: blur(10px); /* Apply blur effect */
     border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
-    color: black;
-    border-radius: 15px;
-    padding: 10px 20px;
+    color: black; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 40px; /* Padding for the button */
     font-size: 1.25rem;
     font-weight: 700;
-    font-family: 'Playpen Sans', sans-serif;
-    transition: all 0.3s ease;
-    animation: blink 1s infinite;
+    font-family: 'Playpen Sans', sans-serif; /* Custom font */
+    transition: all 0.3s ease; /* Smooth hover transition */
+    animation: blink 1s infinite; /* Blinking effect */
 }
-
 .btn-blur-2 {
     background-color: rgba(211, 211, 211, 0.3); /* Transparent white */
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: black;
-    border-radius: 15px;
-    padding: 10px 40px;
-    font-size: 0.8rem;
-    font-family: 'Playpen Sans', sans-serif;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
+    color: black; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 40px; /* Padding for the button */
+    font-size: .8rem;
+    font-weight: normal;
+    font-family: 'Playpen Sans', sans-serif; /* Custom font */
+    transition: all 0.3s ease; /* Smooth hover transition */
 }
 
 .btn-blur:hover {
     background-color: rgba(255, 255, 255, 0.8); /* Darker background on hover */
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); /* Increase blur on hover */
 }
-
 .card-blur {
     background-color: rgba(255, 255, 255, 0.1); /* Light, transparent background */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Add padding to make the content inside the card look better */
 }
-
-.form-container {
-    display: flex;
-    justify-content: space-between; /* Ensures forms are spaced evenly */
-    width: 100%; /* Make sure the container takes full width */
-    max-width: 1200px; /* Adjust this value to limit the container’s size if needed */
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.form-card {
-    width: 45%; /* Sets the width of each form to 40% */
-}
-
-@media (max-width: 768px) {
-    .form-card {
-        width: 100%; /* Stacks the forms vertically on smaller screens */
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-
-/* Footer Icons */
-.footer-icons svg use {
-    fill: black;
-}
-
-/*!* Blinking animation *!*/
-/*@keyframes blink {*/
-/*    0% {*/
-/*        opacity: 1;*/
-/*    }*/
-/*    50% {*/
-/*        opacity: 0.5;*/
-/*    }*/
-/*    100% {*/
-/*        opacity: 1;*/
-/*    }*/
-/*}*/
 
 
