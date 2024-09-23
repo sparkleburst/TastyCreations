@@ -15,8 +15,12 @@ public class RatingService {
     }
 
     // Get all ratings for a specific recipe
-    public List<Rating> findRatingsByRecipeId(int recipeId) {
+    public List<Rating> findRatingsByRecipeId(double recipeId) {
         return ratingRepo.findByRecipeId(recipeId);
+    }
+
+    public Double getAverageRating(double recipeId) {
+        return ratingRepo.findAverageScoreByRecipeId(recipeId);
     }
 
 }

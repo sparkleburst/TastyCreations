@@ -26,7 +26,7 @@ public class Rating {
     private int score;
 
     @NotNull
-    private int recipeId;
+    private double recipeId;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")

@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface RatingRepository extends CrudRepository<Rating, Long> {
     // Automatically generate the query to find all ratings associated with a specific recipe ID.
-    List<Rating> findByRecipeId(int recipeId);
+    List<Rating> findByRecipeId(double recipeId);
+
+    // Calculate the average score for a specific recipe ID
+    Double findAverageScoreByRecipeId(double recipeId);
 }
+
