@@ -40,8 +40,8 @@ public class Comment {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @JoinColumn(name = "review_id")
+    private Review review;
 
     @PrePersist
     protected void onCreate(){

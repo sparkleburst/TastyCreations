@@ -25,11 +25,8 @@ public class Rating {
     @Max(5)
     private int score;
 
-    // Changed from int recipeId to the actual Recipe entity reference
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id")  // This will be the foreign key column for the recipe
-    private Recipe recipe;  // Referencing the Recipe entity instead of using an integer
+    private int recipeId;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -43,11 +40,11 @@ public class Rating {
     @JoinColumn(name = "rater_id")
     private User rater;
 
+
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
-
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();

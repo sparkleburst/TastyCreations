@@ -62,14 +62,14 @@ public class User {
     @OneToMany(mappedBy = "rater", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Rating> ratings;
 
+    @OneToMany(mappedBy = "reviewer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
     @OneToMany(mappedBy = "commenter", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "liker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Like> likes;
-
-    @ManyToMany(mappedBy = "likedByUsers", fetch = FetchType.LAZY)
-    private List<Recipe> likedRecipes;
 
     @PrePersist
     protected void onCreate(){
