@@ -56,7 +56,7 @@ public class RecipeController {
             }
         }
 
-        return "dashboard";  // Renders the dashboard.jsp
+        return "ingredient-search-results";  // Renders the dashboard.jsp
     }
 
     @GetMapping("/recipes/complex-search")
@@ -102,7 +102,7 @@ public class RecipeController {
                 model.addAttribute("response", "Error fetching recipes.");
             }
         }
-        return "dashboard";
+        return "complex-search-results";
     }
 
 

@@ -88,6 +88,8 @@
         </div>
     </div>
 
+</main>
+
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
@@ -105,7 +107,7 @@
         </footer>
     </div>
 
-</main>
+
 </body>
 <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
 </html>
