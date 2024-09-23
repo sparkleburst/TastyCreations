@@ -29,7 +29,7 @@ public class RecipeController {
     private CacheManager cacheManager;  // Inject Spring's CacheManager
 
     @GetMapping({"/recipes/dashboard", "/recipes/search"})
-    public String getRecipes(
+    public String getRecipesByIngredients(
             @RequestParam(value = "ingredients", required = false) String ingredients,
             Model model) {
 
@@ -56,7 +56,7 @@ public class RecipeController {
             }
         }
 
-        return "dashboard";  // Renders the dashboard.jsp
+        return "ingredient-search-results";  // Renders the dashboard.jsp
     }
 
     @GetMapping("/recipes/complex-search")
@@ -102,7 +102,7 @@ public class RecipeController {
                 model.addAttribute("response", "Error fetching recipes.");
             }
         }
-        return "dashboard";
+        return "complex-search-results";
     }
 
 
