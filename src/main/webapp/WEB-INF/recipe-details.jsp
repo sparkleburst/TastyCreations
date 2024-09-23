@@ -53,10 +53,17 @@
         <a href="${recipeInfo.sourceUrl}" class="btn btn-primary" target="_blank">Save</a>
         <a href="${recipeInfo.sourceUrl}" class="btn btn-primary" target="_blank">Rate</a>
 
+        <!-- Display the Recipe ID -->
+            <p>Recipe ID: ${recipeInfo.id}</p>
+
+        <!-- Display user information and likedByUsers -->
+            <p>Logged in User: ${sessionScope.loggedInUser.email}</p>
+            <c:forEach var="user" items="${likedByUsers}">
+                <p>${user.id} - ${user.email}</p>
+            </c:forEach>
+
         <!-- Like/Unlike button -->
         <form action="/recipes/${recipeInfo.id}/like" method="POST" style="display:inline;">
-            <!-- Display the Recipe ID -->
-            <p>Recipe ID: ${recipeInfo.id}</p>
 
             <!-- Check if the user is logged in and if the user has liked the recipe -->
             <!-- Ensure we're checking against the correct list -->
