@@ -21,15 +21,15 @@ public class ApiService {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    @Getter
+//
+//    @Getter
     @Value("${api.key}")
     private String apiKey;
 
     private final String BASE_URL = "https://api.spoonacular.com/recipes/";
 
     @Cacheable("recipes")
-    public Object getRecipesByIngredients(String ingredients) throws ApiException {
+    public Object searchRecipes(String ingredients, String query, String cuisine, String diet, String intolerances, String excludeIngredients) throws ApiException {
         logger.debug("Fetching recipes with ingredients: {}", ingredients);
 
         ApiClient apiClient = new ApiClient();
@@ -56,7 +56,7 @@ public class ApiService {
     }
 
     @Cacheable("recipes")
-    public Object getRecipes(String query, String cuisine, String diet, String intolerances, String excludeIngredients) throws ApiException {
+    public Object getRecipes(String ingredients, String query, String cuisine, String diet, String intolerances, String excludeIngredients) throws ApiException {
 //        logger.debug("Fetching recipes with ingredients: {}", ingredients);
 
         ApiClient apiClient = new ApiClient();
@@ -75,15 +75,20 @@ public class ApiService {
         BigDecimal offset = BigDecimal.valueOf(0); // BigDecimal | The number of results to skip (between 0 and 900).
         Boolean limitLicense = true; // Boolean | Whether the recipes should have an open license that allows display with proper attribution.
 
-
         try {
-            result = apiInstance.searchRecipes(query, cuisine, diet, excludeIngredients, intolerances, offset, number, limitLicense, instructionsRequired);
-//            logger.debug("Recipes fetched successfully for ingredients: {}", ingredients);
-            logger.debug("Response: {}", result);  // Logs the API response for debugging
+            // If only ingredients are provided, use search by ingredients API
+            if (ingredients != null && !ingredients.trim().isEmpty()) {
+                result = apiInstance.searchRecipesByIngredients(ingredients, number, limitLicense, BigDecimal.valueOf(1), true);
+            } else {
+                // Otherwise, use complex search with all possible parameters
+                result = apiInstance.searchRecipes(query, cuisine, diet, excludeIngredients, intolerances, offset, number, limitLicense, instructionsRequired);
+            }
+            logger.debug("Recipes fetched successfully.");
+            return result;
         } catch (ApiException e) {
-            logger.error("Exception when calling DefaultApi#searchRecipes: {}", e.getResponseBody(), e);
+            logger.error("Error fetching recipes: {}", e.getResponseBody(), e);
+            throw e;
         }
-        return result;
     }
 
     @Cacheable("recipes")

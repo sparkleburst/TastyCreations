@@ -9,20 +9,20 @@ import java.util.List;
 
 @Service
 public class CommentService {
+
     @Autowired
     private CommentRepository commentRepository;
 
-    public List<Comment> getALLComments(Long reviewId) {
-        return commentRepository.findAllByCommenterId(reviewId);
+    // Get all comments by commenterId (you may want to rename this depending on your logic)
+    public List<Comment> getALLComments(Long commenterId) {
+        return commentRepository.findAllByCommenterId(commenterId);
     }
+
+    // Update comment logic
     public Comment updateComment(Comment comment) {
         Comment updatedComment = commentRepository.findById(comment.getId()).get();
         updatedComment.setContent(comment.getContent());
         updatedComment.setCommenter(comment.getCommenter());
-        updatedComment.setReview(comment.getReview());
         return commentRepository.save(updatedComment);
     }
-
-
-
 }
