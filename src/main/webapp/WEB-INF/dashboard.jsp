@@ -107,6 +107,7 @@
       <button type="submit" class="btn btn-primary">Search Recipes</button>
     </form>
   </div>
+
 <%--Here's and example how to display complex-search.--%>
   <div class="mt-5">
     <h2>Recipe Complex Search Results:</h2>
@@ -115,14 +116,16 @@
       <c:forEach var="recipe" items="${response}">
         <p>==============================</p>
         <p>Title: ${recipe.title}</p>
+        <p>Id: ${recipe.id}</p>
         <p>Image: <img src="${recipe.image}" alt="${recipe.title}"/></p>
+        <p>Source: <a href="${recipe.sourceUrl}">View Recipe</a></p>
         <p>Ready in: ${recipe.readyInMinutes} minutes</p>
         <p>Servings: ${recipe.servings}</p>
       </c:forEach>
     </c:if>
   </div>
 
-<%--  I needed to comment out the code below, because of the complex search--%>
+<%--  The below results are to display serachbyingredients --%>
 
   <!-- Display the API Response (formatted) -->
 <%--  <div class="mt-5">--%>
