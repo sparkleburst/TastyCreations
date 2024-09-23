@@ -39,6 +39,8 @@
 </div>
 <div class="container mt-5">
   <h1 class="text-dark text-center" style="font-size: 2rem">${recipeInfo.title}</h1>
+  <div class="text-center"><a href="#reviews">4 Reviews</a></div>
+
   <div class="card shadow mx-auto my-4" style="max-width: 500px; border: none;">
     <img src="${recipeInfo.image}" alt="${recipeInfo.title}" class="card-img-top img-fluid rounded" style="border-radius: 30px; overflow: hidden;">
   </div>
@@ -61,9 +63,16 @@
         </div>
 
       </div>
-
+  </div>
+  <div id="reviews">
+    <div class="card-body p-3">
+      <h3>Reviews (4)</h3>
+      <div>
+        <h4>My Review</h4>
 
       </div>
+    </div>
+  </div>
 </div>
 
 
