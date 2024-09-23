@@ -29,7 +29,7 @@ public class RecipeController {
     private CacheManager cacheManager;  // Inject Spring's CacheManager
 
     @GetMapping({"/recipes/dashboard", "/recipes/search"})
-    public String getRecipes(
+    public String getRecipesByIngredients(
             @RequestParam(value = "ingredients", required = false) String ingredients,
             Model model) {
 
