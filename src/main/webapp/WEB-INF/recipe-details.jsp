@@ -42,81 +42,31 @@
   <div class="card shadow mx-auto my-4" style="max-width: 500px; border: none;">
     <img src="${recipeInfo.image}" alt="${recipeInfo.title}" class="card-img-top img-fluid rounded" style="border-radius: 30px; overflow: hidden;">
   </div>
-  <div class="col-sm-4">
-    <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 500px;">
+
+  <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 500px;">
 
       <div class="card-body p-3">
-        <h2 class="mb-2 text-dark">Register</h2>
-        <form:form action="/register" method="post" modelAttribute="newUser">
-          <div class="mb-0">
-            <form:label class="form-label text-dark" path="firstName" style="font-size: 0.9rem;">First Name:</form:label>
-            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="firstName" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="firstName"/>
-                                </span>
-          </div>
-          <div class="mb-0">
-            <form:label class="form-label text-dark" path="lastName" style="font-size: 0.9rem;">Last Name:</form:label>
-            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="lastName" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="lastName"/>
-                                </span>
-          </div>
-          <div class="mb-0">
-            <form:label class="form-label text-dark" path="email" style="font-size: 0.9rem;">Email:</form:label>
-            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="email" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="email"/>
-                                </span>
-          </div>
-          <div class="mb-0">
-            <form:label class="form-label text-dark" path="birthDate" style="font-size: 0.9rem;">Date of Birth:</form:label>
-            <form:input type="date" cssClass="form-control form-control-sm bg-white text-dark" path="birthDate" value="${savedDate}" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="birthDate"/>
-                                </span>
-          </div>
-          <div class="mb-0">
-            <form:label class="form-label text-dark" path="password" style="font-size: 0.9rem;">Password:</form:label>
-            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="password" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="password"/>
-                                </span>
-          </div>
-          <div class="mb-1">
-            <form:label class="form-label text-dark" path="confirmPassword" style="font-size: 0.9rem;">Confirm Password:</form:label>
-            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="confirmPassword" style="height: 30px;"/>
-            <span class="form-text text-warning">
-                                    <form:errors path="confirmPassword"/>
-                                </span>
-          </div>
-          <button type="submit" class="btn btn-blur-2 btn-sm w-100">Register</button>
-        </form:form>
+        <h3>Ingredients</h3>
+        <ul>
+          <c:forEach var="ingredient" items="${recipeInfo.extendedIngredients}">
+            <li>${ingredient.original}</li>
+          </c:forEach>
+        </ul>
+
+        <h3>Instructions</h3>
+        <p>${recipeInfo.instructions}</p>
+        <div class="text-start">
+          <a href="${recipeInfo.sourceUrl}" class="btn btn-blur-2 btn-sm" target="_blank">View Full Recipe</a>
+
+        </div>
+
       </div>
-    </div>
-  </div>
 
 
-
-
-
-
-
-
-
-
-  <h3>Ingredients</h3>
-  <ul>
-    <c:forEach var="ingredient" items="${recipeInfo.extendedIngredients}">
-      <li>${ingredient.original}</li>
-    </c:forEach>
-  </ul>
-
-  <h3>Instructions</h3>
-  <p>${recipeInfo.instructions}</p>
-
-  <a href="${recipeInfo.sourceUrl}" class="btn btn-primary" target="_blank">View Full Recipe</a>
+      </div>
 </div>
+
+
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">

@@ -44,7 +44,7 @@ body {
     animation: blink 1s infinite; /* Blinking effect */
 }
 .btn-blur-2 {
-    background-color: rgba(211, 211, 211, 0.3); /* Transparent white */
+    background-color: rgba(211, 211, 211, 0.7); /* Transparent white */
     backdrop-filter: blur(8px); /* Apply blur effect */
     border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
     color: black; /* Text color */
