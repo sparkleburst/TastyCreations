@@ -1,5 +1,6 @@
 package com.mgilhespy.tastycreations.controllers;
 
+import com.mgilhespy.tastycreations.models.Recipe;
 import com.mgilhespy.tastycreations.services.ApiService;
 import com.spoonacular.client.ApiException;
 import org.slf4j.Logger;
@@ -12,6 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RecipeController {
@@ -54,7 +59,54 @@ public class RecipeController {
         return "dashboard";  // Renders the dashboard.jsp
     }
 
-    // Endpoint to get detailed recipe information by ID
+    @GetMapping("/recipes/complex-search")
+    public String getRecipes(
+            @RequestParam(value = "query", required = false) String query,
+            @RequestParam(value = "cuisine", required = false) String cuisine,
+            @RequestParam(value = "diet", required = false) String diet,
+            @RequestParam(value = "intolerances", required = false) String intolerances,
+            @RequestParam(value = "exclude-ingredients", required = false) String excludeIngredients,
+            Model model) {
+
+
+        Cache cache = cacheManager.getCache("recipes");
+        Cache.ValueWrapper cachedValue = cache.get(query);
+
+        if (cachedValue != null) {
+            logger.info("Cache hit for query: {}", query);
+            model.addAttribute("response", cachedValue.get());
+        } else {
+            logger.info("Cache miss for query: {}", query);
+            try {
+                Object response = apiService.getRecipes(query, cuisine, excludeIngredients, diet, intolerances);
+
+                Map<String, Object> responseMap = (Map<String, Object>) response;
+                List<Map<String, Object>> resultsList = (List<Map<String, Object>>) responseMap.get("results");
+
+                List<Recipe> recipes = new ArrayList<>();
+                for (Map<String, Object> result : resultsList) {
+                    Recipe recipe = new Recipe();
+                    recipe.setTitle((String) result.get("title"));
+                    recipe.setImage((String) result.get("image"));
+                    recipe.setSourceUrl((String) result.get("sourceUrl"));
+                    recipe.setReadyInMinutes((Double) result.get("readyInMinutes"));
+                    recipe.setServings((Double) result.get("servings"));
+                    recipe.setId((Double) result.get("id"));
+                    recipes.add(recipe);
+                }
+
+                model.addAttribute("response", recipes);
+                cache.put(query, recipes); // Store the response in the cache
+            } catch (ApiException e) {
+                logger.error("Error fetching recipes for query: {}", query, e);
+                model.addAttribute("response", "Error fetching recipes.");
+            }
+        }
+        return "dashboard";
+    }
+
+
+        // Endpoint to get detailed recipe information by ID
     @GetMapping("/recipes/{id}/information")
     public String getRecipeInformation(@PathVariable("id") String recipeIdString, Model model) {
         try {
