@@ -28,17 +28,45 @@ public class RecipeController {
     @Autowired
     private CacheManager cacheManager;  // Inject Spring's CacheManager
 
-    @GetMapping({"/recipes/dashboard", "/recipes/search"})
+    // Handles the /recipes/dashboard route
+    @GetMapping("/recipes/dashboard")
+    public String showDashboard(Model model) {
+        // Default ingredients for displaying on the dashboard (or you can customize this section)
+        String defaultIngredients = "apples,flour,sugar";
+
+        // Check if the value is already in the cache for default ingredients
+        Cache cache = cacheManager.getCache("recipes");
+        Cache.ValueWrapper cachedValue = cache.get(defaultIngredients);
+
+        if (cachedValue != null) {
+            logger.info("Cache hit for default ingredients: {}", defaultIngredients);
+            model.addAttribute("response", cachedValue.get());
+        } else {
+            logger.info("Cache miss for default ingredients: {}", defaultIngredients);
+            try {
+                Object response = apiService.getRecipesByIngredients(defaultIngredients);
+                model.addAttribute("response", response);
+            } catch (ApiException e) {
+                logger.error("Error fetching recipes for default ingredients: {}", defaultIngredients, e);
+                model.addAttribute("response", "Error fetching recipes.");
+            }
+        }
+
+        return "dashboard";  // Render the dashboard.jsp
+    }
+
+    // Handles the /recipes/search route
+    @GetMapping("/recipes/search")
     public String getRecipesByIngredients(
             @RequestParam(value = "ingredients", required = false) String ingredients,
             Model model) {
 
-        // Use default ingredients if none are provided
+        // Use default ingredients if none are provided in the search
         if (ingredients == null || ingredients.isEmpty()) {
-            ingredients = "apples,flour,sugar";  // Default ingredients for the dashboard
+            ingredients = "apples,flour,sugar";
         }
 
-        // Check if the value is already in the cache
+        // Check if the value is already in the cache for the searched ingredients
         Cache cache = cacheManager.getCache("recipes");
         Cache.ValueWrapper cachedValue = cache.get(ingredients);
 
@@ -56,7 +84,7 @@ public class RecipeController {
             }
         }
 
-        return "ingredient-search-results";  // Renders the dashboard.jsp
+        return "ingredient-search-results";  // Render the ingredient-search-results.jsp
     }
 
     @GetMapping("/recipes/complex-search")
