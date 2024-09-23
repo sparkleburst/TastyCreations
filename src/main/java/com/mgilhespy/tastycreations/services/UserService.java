@@ -40,18 +40,26 @@ public class UserService {
     public User login(LoginUser loginUser, BindingResult result) {
         Optional<User> potentialUser = userRepo.findByEmail(loginUser.getLoginEmail());
 
+        // Check if user exists
         if(potentialUser.isEmpty()) {
             result.rejectValue("loginEmail", "email.not-found", "Email does not exist!");
-        }
-
-        if(potentialUser.isPresent() && !BCrypt.checkpw(loginUser.getLoginPassword(), potentialUser.orElse(null).getPassword())) {
-            result.rejectValue("loginPassword", "Matches", "Invalid Password!");
-        }
-
-        if(result.hasErrors()) {
             return null;
         }
-        return potentialUser.get();
+
+        User user = potentialUser.get();
+
+        // Check if password matches
+        if (!BCrypt.checkpw(loginUser.getLoginPassword(), user.getPassword())) {
+            result.rejectValue("loginPassword", "Matches", "Invalid Password!");
+            return null;
+        }
+
+        // Check for any errors
+        if (result.hasErrors()) {
+            return null;
+        }
+
+        return user;
     }
 
     public User findUserById(Long id) {
