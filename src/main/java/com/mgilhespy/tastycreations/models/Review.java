@@ -29,7 +29,7 @@ public class Review {
     private String content;
 
     @NotNull
-    private int recipeId;
+    private double recipeId;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
