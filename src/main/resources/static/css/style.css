@@ -4,6 +4,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed; /* Optional: makes the background stay in place */
+    font-family: 'Playpen Sans', sans-serif;
 }
 
 .navbar-blur {
@@ -61,10 +62,11 @@ body {
 }
 .card-blur {
     background-color: rgba(255, 255, 255, 0.1); /* Light, transparent background */
-    backdrop-filter: blur(10px); /* Apply blur effect */
+    backdrop-filter: blur(5px); /* Apply blur effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     border-radius: 15px; /* Rounded corners */
     padding: 20px; /* Add padding to make the content inside the card look better */
 }
+
 
 

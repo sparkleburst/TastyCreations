@@ -35,80 +35,81 @@
         </div>
     </nav>
 </div>
-<main class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h2 class="display-6 mb-3">Register</h2>
-            <div class="card card-sm shadow mb-3">
-                <div class="card-body">
+<main class="container m-5">
+    <div class="justify-content-center row gap-3">
+        <div class="col-sm-4">
+            <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 500px;">
+
+                <div class="card-body p-3">
+                    <h2 class="mb-2 text-dark">Register</h2>
                     <form:form action="/register" method="post" modelAttribute="newUser">
-                        <div class="mb-3">
-                            <form:label class="form-label" path="firstName">First Name:</form:label>
-                            <form:input cssClass="form-control form-control-sm" path="firstName"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="firstName" style="font-size: 0.9rem;">First Name:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="firstName" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="firstName"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="lastName">Last Name:</form:label>
-                            <form:input cssClass="form-control form-control-sm" path="lastName"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="lastName" style="font-size: 0.9rem;">Last Name:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="lastName" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="lastName"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="email">Email:</form:label>
-                            <form:input cssClass="form-control form-control-sm" path="email"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="email" style="font-size: 0.9rem;">Email:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="email" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="email"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="birthDate">Date of Birth:</form:label>
-                            <form:input type="date" cssClass="form-control form-control-sm" path="birthDate" value="${savedDate}"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="birthDate" style="font-size: 0.9rem;">Date of Birth:</form:label>
+                            <form:input type="date" cssClass="form-control form-control-sm bg-white text-dark" path="birthDate" value="${savedDate}" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="birthDate"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="password">Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm" path="password"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="password" style="font-size: 0.9rem;">Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="password" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="password"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="confirmPassword">Confirm Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm" path="confirmPassword"/>
+                        <div class="mb-1">
+                            <form:label class="form-label text-dark" path="confirmPassword" style="font-size: 0.9rem;">Confirm Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="confirmPassword" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="confirmPassword"/>
                                 </span>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                        <button type="submit" class="btn btn-blur-2 btn-sm w-100">Register</button>
                     </form:form>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 ">
-            <h2 class="display-6 mb-3">Login</h2>
-            <div class="card p card-sm shadow mb-3">
-                <div class="card-body">
+        <div class="col-sm-4 ">
+            <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 400px;">
+                <div class="card-body p-3">
+                    <h2 class="mb-2 text-dark">Login</h2>
                     <form:form action="/login" method="post" modelAttribute="loginUser">
-                        <div class="mb-3">
-                            <form:label class="form-label" path="loginEmail">Email:</form:label>
-                            <form:input cssClass="form-control form-control-sm" path="loginEmail"/>
+                        <div class="mb-0">
+                            <form:label class="form-label text-dark" path="loginEmail" style="font-size: 0.9rem;">Email:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="loginEmail" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="loginEmail"/>
                                 </span>
                         </div>
-                        <div class="mb-3">
-                            <form:label class="form-label" path="loginPassword">Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm" path="loginPassword"/>
+                        <div class="mb-1">
+                            <form:label class="form-label text-dark" path="loginPassword" style="font-size: 0.9rem;">Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="loginPassword" style="height: 30px;" />
                             <span class="form-text text-warning">
                 <form:errors path="loginPassword"/>
             </span>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <button type="submit" class="btn btn-blur-2 btn-sm w-100">Login</button>
                     </form:form>
                 </div>
             </div>
