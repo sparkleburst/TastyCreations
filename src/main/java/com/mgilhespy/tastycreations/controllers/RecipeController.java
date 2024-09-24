@@ -56,16 +56,16 @@ public class RecipeController {
         // Check if the value is already in the cache for default ingredients
         Cache cache = cacheManager.getCache("recipes");
         Cache.ValueWrapper cachedValue = cache.get(defaultIngredients);
-
+        User user= userService.findUserById(userId);
         if (cachedValue != null) {
             logger.info("Cache hit for default ingredients: {}", defaultIngredients);
-            User user= userService.findUserById(userId);
             model.addAttribute("user", user);
             model.addAttribute("response", cachedValue.get());
         } else {
             logger.info("Cache miss for default ingredients: {}", defaultIngredients);
             try {
                 Object response = apiService.getRecipesByIngredients(defaultIngredients);
+                model.addAttribute("user", user);
                 model.addAttribute("response", response);
             } catch (ApiException e) {
                 logger.error("Error fetching recipes for default ingredients: {}", defaultIngredients, e);
@@ -94,16 +94,16 @@ public class RecipeController {
         // Check if the value is already in the cache for the searched ingredients
         Cache cache = cacheManager.getCache("recipes");
         Cache.ValueWrapper cachedValue = cache.get(ingredients);
-
+        User user= userService.findUserById(userId);
         if (cachedValue != null) {
             logger.info("Cache hit for ingredients: {}", ingredients);
-            User user= userService.findUserById(userId);
             model.addAttribute("user", user);
             model.addAttribute("response", cachedValue.get());
         } else {
             logger.info("Cache miss for ingredients: {}", ingredients);
             try {
                 Object response = apiService.getRecipesByIngredients(ingredients);
+                model.addAttribute("user", user);
                 model.addAttribute("response", response);
             } catch (ApiException e) {
                 logger.error("Error fetching recipes for ingredients: {}", ingredients, e);
@@ -131,9 +131,10 @@ public class RecipeController {
 
         Cache cache = cacheManager.getCache("recipes");
         Cache.ValueWrapper cachedValue = cache.get(query);
-
+        User user= userService.findUserById(userId);
         if (cachedValue != null) {
             logger.info("Cache hit for query: {}", query);
+            model.addAttribute("user", user);
             model.addAttribute("response", cachedValue.get());
         } else {
             logger.info("Cache miss for query: {}", query);
@@ -154,7 +155,7 @@ public class RecipeController {
                     recipe.setId((Double) result.get("id"));
                     recipes.add(recipe);
                 }
-
+                model.addAttribute("user", user);
                 model.addAttribute("response", recipes);
                 cache.put(query, recipes); // Store the response in the cache
             } catch (ApiException e) {
@@ -177,8 +178,6 @@ public class RecipeController {
             // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
 
-
-
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
             System.out.println(recipeInfo);
             model.addAttribute("recipeInfo", recipeInfo);
@@ -191,8 +190,6 @@ public class RecipeController {
 
             model.addAttribute("hasReviewed", reviewService.hasUserReviewedRecipe(recipeId, userId));
             model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeId, userId));
-
-
 
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
