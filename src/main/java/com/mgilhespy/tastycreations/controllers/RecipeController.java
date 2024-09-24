@@ -45,7 +45,11 @@ public class RecipeController {
 
     // Handles the /recipes/dashboard route
     @GetMapping("/recipes/dashboard")
-    public String showDashboard(Model model) {
+    public String showDashboard(Model model, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if(userId == null) {
+            return "redirect:/login";
+        }
         // Default ingredients for displaying on the dashboard (or you can customize this section)
         String defaultIngredients = "apples,flour,sugar";
 
@@ -55,6 +59,8 @@ public class RecipeController {
 
         if (cachedValue != null) {
             logger.info("Cache hit for default ingredients: {}", defaultIngredients);
+            User user= userService.findUserById(userId);
+            model.addAttribute("user", user);
             model.addAttribute("response", cachedValue.get());
         } else {
             logger.info("Cache miss for default ingredients: {}", defaultIngredients);
@@ -74,7 +80,11 @@ public class RecipeController {
     @GetMapping("/recipes/search")
     public String getRecipesByIngredients(
             @RequestParam(value = "ingredients", required = false) String ingredients,
-            Model model) {
+            Model model, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if(userId == null) {
+            return "redirect:/login";
+        }
 
         // Use default ingredients if none are provided in the search
         if (ingredients == null || ingredients.isEmpty()) {
@@ -87,6 +97,8 @@ public class RecipeController {
 
         if (cachedValue != null) {
             logger.info("Cache hit for ingredients: {}", ingredients);
+            User user= userService.findUserById(userId);
+            model.addAttribute("user", user);
             model.addAttribute("response", cachedValue.get());
         } else {
             logger.info("Cache miss for ingredients: {}", ingredients);
@@ -109,7 +121,12 @@ public class RecipeController {
             @RequestParam(value = "diet", required = false) String diet,
             @RequestParam(value = "intolerances", required = false) String intolerances,
             @RequestParam(value = "exclude-ingredients", required = false) String excludeIngredients,
-            Model model) {
+            Model model, HttpSession session) {
+
+        Long userId = (Long) session.getAttribute("userId");
+        if(userId == null) {
+            return "redirect:/login";
+        }
 
 
         Cache cache = cacheManager.getCache("recipes");
