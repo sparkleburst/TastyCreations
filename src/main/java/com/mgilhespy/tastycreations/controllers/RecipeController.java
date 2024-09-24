@@ -1,9 +1,11 @@
 package com.mgilhespy.tastycreations.controllers;
 
 import com.mgilhespy.tastycreations.models.Recipe;
+import com.mgilhespy.tastycreations.models.Review;
 import com.mgilhespy.tastycreations.models.User;
 import com.mgilhespy.tastycreations.services.ApiService;
 import com.mgilhespy.tastycreations.services.RatingService;
+import com.mgilhespy.tastycreations.services.ReviewService;
 import com.mgilhespy.tastycreations.services.UserService;
 import com.spoonacular.client.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +40,8 @@ public class RecipeController {
     private CacheManager cacheManager;  // Inject Spring's CacheManager
     @Autowired
     private UserService userService;
+    @Autowired
+    private ReviewService reviewService;
 
     // Handles the /recipes/dashboard route
     @GetMapping("/recipes/dashboard")
@@ -146,7 +151,11 @@ public class RecipeController {
 
         // Endpoint to get detailed recipe information by ID
     @GetMapping("/recipes/{recipeId}/information")
-    public String getRecipeInformation(@PathVariable("recipeId") String recipeIdString, Model model, HttpSession session) {
+    public String getRecipeInformation(@PathVariable("recipeId") String recipeIdString, Model model, HttpSession session, @ModelAttribute("review") Review review) {
+        Long userId = (Long) session.getAttribute("userId");
+        if(userId == null) {
+            return "redirect:/login";
+        }
         try {
             // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
@@ -160,11 +169,11 @@ public class RecipeController {
             Double averageRating = ratingService.getAverageRating((double) recipeId);
             model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
 
-            Long currentUserId = (Long) session.getAttribute("userId");
-            User user= userService.findUserById(currentUserId);
+            User user= userService.findUserById(userId);
             model.addAttribute("user", user);
 
-
+            model.addAttribute("hasReviewed", reviewService.hasUserReviewedRecipe(recipeId, userId));
+            model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeId, userId));
 
 
 
