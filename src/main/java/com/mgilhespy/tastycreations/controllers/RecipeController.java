@@ -2,7 +2,10 @@ package com.mgilhespy.tastycreations.controllers;
 
 import com.mgilhespy.tastycreations.models.Recipe;
 import com.mgilhespy.tastycreations.services.ApiService;
+import com.mgilhespy.tastycreations.services.RatingService;
 import com.spoonacular.client.ApiException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class RecipeController {
 
     @Autowired
     private ApiService apiService;
+
+    @Autowired
+    RatingService ratingService;
 
     @Autowired
     private CacheManager cacheManager;  // Inject Spring's CacheManager
@@ -135,14 +141,25 @@ public class RecipeController {
 
 
         // Endpoint to get detailed recipe information by ID
-    @GetMapping("/recipes/{id}/information")
-    public String getRecipeInformation(@PathVariable("id") String recipeIdString, Model model) {
+    @GetMapping("/recipes/{recipeId}/information")
+    public String getRecipeInformation(@PathVariable("recipeId") String recipeIdString, Model model, HttpSession session) {
         try {
             // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
 
+
+
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
             model.addAttribute("recipeInfo", recipeInfo);
+
+            Double averageRating = ratingService.getAverageRating((double) recipeId);
+            model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
+
+            Long currentUserId = (Long) session.getAttribute("userId");
+            model.addAttribute("raterId", currentUserId);
+
+
+
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
         } catch (NumberFormatException e) {
