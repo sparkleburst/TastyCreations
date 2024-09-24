@@ -16,8 +16,8 @@ public class ReviewService {
     public Review createReview(Review review) {
         return reviewRepository.save(review);
     }
-    public List<Review> getAllReviewsByRecipeId(Long recipeId) {
-        return reviewRepository.findAllReviewsByRecipeId(recipeId);
+    public List<Review> getAllReviewsByRecipeId(double recipeId) {
+        return reviewRepository.findAllReviewsByRecipeIdOrderByCreatedAtDesc(recipeId);
     }
     public Review getReviewById(Long reviewId) {
         Optional<Review> review = reviewRepository.findById(reviewId);
