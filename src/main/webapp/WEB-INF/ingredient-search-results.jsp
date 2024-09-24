@@ -25,10 +25,11 @@
 <div class="container">
     <nav class="navbar navbar-light navbar-blur py-0">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="/recipes/dashboard">
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
-                <div class="d-flex">
+                <div class="d-flex gap-4">
+                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/recipes/dashboard">Dashboard</a>
                     <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Login</a> <!-- this link goes to login.jsp -->
                 </div>
             </a>
