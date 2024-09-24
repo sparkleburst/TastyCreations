@@ -1,11 +1,10 @@
 package com.mgilhespy.tastycreations.controllers;
 
 import com.mgilhespy.tastycreations.models.Recipe;
-import com.mgilhespy.tastycreations.models.Review;
-import com.mgilhespy.tastycreations.models.User;
 import com.mgilhespy.tastycreations.services.ApiService;
-import com.mgilhespy.tastycreations.services.UserService;
+import com.mgilhespy.tastycreations.services.RatingService;
 import com.spoonacular.client.ApiException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,10 +29,10 @@ public class RecipeController {
     private ApiService apiService;
 
     @Autowired
-    private CacheManager cacheManager;  // Inject Spring's CacheManager
+    RatingService ratingService;
 
     @Autowired
-    private UserService userService;
+    private CacheManager cacheManager;  // Inject Spring's CacheManager
 
     // Handles the /recipes/dashboard route
     @GetMapping("/recipes/dashboard")
@@ -143,20 +141,25 @@ public class RecipeController {
 
 
         // Endpoint to get detailed recipe information by ID
-    @GetMapping("/recipes/{id}/information")
-    public String getRecipeInformation(@PathVariable("id") String recipeIdString, Model model, @ModelAttribute("review") Review review, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {
-            return "redirect:/login";
-        }
+    @GetMapping("/recipes/{recipeId}/information")
+    public String getRecipeInformation(@PathVariable("recipeId") String recipeIdString, Model model, HttpSession session) {
         try {
             // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
 
+
+
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
-            User user = userService.findUserById(userId);
             model.addAttribute("recipeInfo", recipeInfo);
-            model.addAttribute("user", user);
+
+            Double averageRating = ratingService.getAverageRating((double) recipeId);
+            model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
+
+            Long currentUserId = (Long) session.getAttribute("userId");
+            model.addAttribute("raterId", currentUserId);
+
+
+
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
         } catch (NumberFormatException e) {

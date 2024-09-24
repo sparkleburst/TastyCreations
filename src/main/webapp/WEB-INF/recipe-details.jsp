@@ -39,13 +39,33 @@
 </div>
 <div class="container mt-5">
   <h1 class="text-dark text-center" style="font-size: 2rem">${recipeInfo.title}</h1>
-  <div class="text-center"><a href="#reviews">4 Reviews</a></div>
-
+  <h6  class=" text-center text-muted"><strong>Average Rating:</strong>
+    <c:choose>
+      <c:when test="${not empty averageRating}">
+        ${averageRating}
+      </c:when>
+      <c:otherwise>
+        No ratings yet
+      </c:otherwise>
+    </c:choose>
+  </h6>
+  <c:if test="${not empty param.error}">
+    <div class="alert alert-warning text-center mt-3">
+      <c:choose>
+        <c:when test="${param.error == 'alreadyRated'}">
+          You have already rated this recipe.
+        </c:when>
+        <c:when test="${param.error == 'userNotFound'}">
+          User not found.
+        </c:when>
+      </c:choose>
+    </div>
+  </c:if>
   <div class="card shadow mx-auto my-4" style="max-width: 500px; border: none;">
     <img src="${recipeInfo.image}" alt="${recipeInfo.title}" class="card-img-top img-fluid rounded" style="border-radius: 30px; overflow: hidden;">
   </div>
 
-  <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 500px;">
+  <div class="card card-blur shadow mb-3" style="padding: 8px;">
 
       <div class="card-body p-3">
         <h3>Ingredients</h3>
@@ -59,33 +79,27 @@
         <p>${recipeInfo.instructions}</p>
         <div class="text-start">
           <a href="${recipeInfo.sourceUrl}" class="btn btn-blur-2 btn-sm" target="_blank">View Full Recipe</a>
-
+        </div>
+        <div class="d-flex justify-content-end align-items-center mt-2 mt-sm-0">
+          <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post" class="d-flex align-items-center">
+            <label for="ratingDropdown" class="me-2 mb-0">Rate:</label>
+            <select name="score" id="ratingDropdown" class="form-select form-select-sm" style="width: auto;">
+              <option value="" disabled selected>Select</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <input type="hidden" name="raterId" value="${raterId}">
+            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
+          </form>
         </div>
 
       </div>
-  </div>
-  <div id="reviews">
-    <div class="card-body p-3">
-      <h3>Reviews (4)</h3>
-      <div>
-        <h4>My Review</h4>
-        <form:form action="/recipes/${recipeInfo.id}/reviews/create" modelAttribute="review">
-          <form:hidden path="reviewer" value="${user.id}"/>
-          <form:hidden path="recipeId" value="${recipeInfo.id}"/>
-          <div class="mb-3">
-            <form:label path="content" cssClass="form-label">Add review:</form:label>
-            <form:textarea path="content" cssClass="form-control"/>
-            <span class="form-text text-warning">
-                <form:errors path="content" />
-            </span>
-          </div>
-          <div class="text-end">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form:form>
+
+
       </div>
-    </div>
-  </div>
 </div>
 
 
