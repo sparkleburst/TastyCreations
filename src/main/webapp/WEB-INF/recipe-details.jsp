@@ -40,7 +40,7 @@
 </div>
 <div class="container mt-5">
   <h1 class="text-dark text-center" style="font-size: 2rem">${recipeInfo.title}</h1>
-  <h6  class=" text-center text-muted"><strong>Average Rating:</strong>
+  <h6  class=" text-center text-muted"><span><strong><a class="text-decoration-none text-muted" href="#reviews">4 Reviews | </a></strong></span><strong>Average Rating:</strong>
     <c:choose>
       <c:when test="${not empty averageRating}">
         ${averageRating}
@@ -98,10 +98,34 @@
         </div>
 
       </div>
-
-
       </div>
+  <h3>Reviews (4)</h3>
+  <div class="card card-blur shadow mb-3" id="reviews">
+    <h5>My Review</h5>
+    <c:choose>
+        <c:when test="${hasReviewed}">
+            <p>${userReview.content}</p>
+        </c:when>
+        <c:otherwise>
+          <form:form action="/recipes/${recipeInfo.id}/reviews/create" method="post" modelAttribute="review">
+            <form:hidden path="reviewer" value="${user.id}"/>
+            <form:hidden path="recipeId" value="${recipeInfo.id}"/>
+            <div class="mb-3">
+              <form:textarea path="content" cssClass="form-control" placeholder="What did you think about this recipe? Did you make any changes?"/>
+              <span class="form-text text-warning">
+                <form:errors path="content" />
+            </span>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
+            </div>
+          </form:form>
+        </c:otherwise>
+    </c:choose>
+
+  </div>
 </div>
+
 
 
 <div class="container">

@@ -35,6 +35,18 @@ public class ReviewService {
         return reviewRepository.save(reviewToUpdate);
 
     }
+    public boolean hasUserReviewedRecipe(double recipeId, Long userId) {
+        return reviewRepository.findByRecipeIdAndReviewerId(recipeId, userId).isPresent();
+    }
+
+    public Review findByRecipeIdAndReviewerId(Long recipeId, Long reviewerId) {
+        Optional<Review> reviewOptional = reviewRepository.findByRecipeIdAndReviewerId( recipeId, reviewerId);
+        if (reviewOptional.isEmpty()) {
+            return null;
+        }
+        Review review = reviewOptional.get();
+        return review;
+    }
 
 
 }
