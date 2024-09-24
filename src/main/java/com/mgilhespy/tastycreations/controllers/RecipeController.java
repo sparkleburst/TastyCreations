@@ -1,8 +1,10 @@
 package com.mgilhespy.tastycreations.controllers;
 
 import com.mgilhespy.tastycreations.models.Recipe;
+import com.mgilhespy.tastycreations.models.User;
 import com.mgilhespy.tastycreations.services.ApiService;
 import com.mgilhespy.tastycreations.services.RatingService;
+import com.mgilhespy.tastycreations.services.UserService;
 import com.spoonacular.client.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +35,8 @@ public class RecipeController {
 
     @Autowired
     private CacheManager cacheManager;  // Inject Spring's CacheManager
+    @Autowired
+    private UserService userService;
 
     // Handles the /recipes/dashboard route
     @GetMapping("/recipes/dashboard")
@@ -150,13 +154,17 @@ public class RecipeController {
 
 
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
+            System.out.println(recipeInfo);
             model.addAttribute("recipeInfo", recipeInfo);
 
             Double averageRating = ratingService.getAverageRating((double) recipeId);
             model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
 
             Long currentUserId = (Long) session.getAttribute("userId");
-            model.addAttribute("raterId", currentUserId);
+            User user= userService.findUserById(currentUserId);
+            model.addAttribute("user", user);
+
+
 
 
 

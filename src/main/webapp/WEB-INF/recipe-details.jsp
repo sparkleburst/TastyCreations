@@ -31,8 +31,8 @@
 
         <div class="d-flex gap-3">
           <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/recipes/dashboard">Dashboard</a>
-          <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">My recipes</a> <!-- this link goes to login.jsp -->
-          <a class="nav-link text-dark ms-3" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Logout</a> <!-- this link goes to login.jsp -->
+          <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/recipes/${user.id}">My recipes</a> <!-- this link goes to login.jsp -->
+          <a class="nav-link text-dark ms-3" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/logout">Logout</a> <!-- this link goes to login.jsp -->
         </div>
       </a>
     </div>
@@ -92,7 +92,7 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <input type="hidden" name="raterId" value="${raterId}">
+            <input type="hidden" name="raterId" value="${user.id}">
             <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
           </form>
         </div>
