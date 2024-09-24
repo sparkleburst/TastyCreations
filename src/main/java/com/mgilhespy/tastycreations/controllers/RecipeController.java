@@ -150,6 +150,7 @@ public class RecipeController {
 
 
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
+            System.out.println(recipeInfo);
             model.addAttribute("recipeInfo", recipeInfo);
 
             Double averageRating = ratingService.getAverageRating((double) recipeId);
