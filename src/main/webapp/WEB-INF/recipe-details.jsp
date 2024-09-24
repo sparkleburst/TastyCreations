@@ -43,7 +43,8 @@
   <h6  class=" text-center text-muted"><span><strong><a class="text-decoration-none text-muted" href="#reviews">4 Reviews | </a></strong></span><strong>Average Rating:</strong>
     <c:choose>
       <c:when test="${not empty averageRating}">
-        ${averageRating}
+<%--        formatting a double to one decimal place--%>
+        <fmt:formatNumber value="${averageRating}" pattern="#0.0" />
       </c:when>
       <c:otherwise>
         No ratings yet
