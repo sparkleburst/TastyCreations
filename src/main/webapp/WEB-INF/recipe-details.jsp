@@ -69,7 +69,20 @@
       <h3>Reviews (4)</h3>
       <div>
         <h4>My Review</h4>
-
+        <form:form action="/recipes/${recipeInfo.id}/reviews/create" modelAttribute="review">
+          <form:hidden path="reviewer" value="${user.id}"/>
+          <form:hidden path="recipeId" value="${recipeInfo.id}"/>
+          <div class="mb-3">
+            <form:label path="content" cssClass="form-label">Add review:</form:label>
+            <form:textarea path="content" cssClass="form-control"/>
+            <span class="form-text text-warning">
+                <form:errors path="content" />
+            </span>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form:form>
       </div>
     </div>
   </div>
