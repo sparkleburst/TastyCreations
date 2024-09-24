@@ -52,6 +52,7 @@
                             <p>Ready in: ${recipe.readyInMinutes} minutes</p>
                             <p>Servings: ${recipe.servings}</p>
                             <a href="${recipe.sourceUrl}" class="btn btn-primary">View Recipe Source</a>
+                            <a href="/recipes/${recipe.id}/information" class="btn btn-primary" target="_self">View Recipe Details</a>
                         </div>
                     </div>
                 </div>
