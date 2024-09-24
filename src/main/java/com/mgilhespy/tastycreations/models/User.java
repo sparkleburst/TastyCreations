@@ -1,6 +1,5 @@
 package com.mgilhespy.tastycreations.models;
 
-import com.mgilhespy.tastycreations.constraints.AgeLimit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -35,12 +34,6 @@ public class User {
     @NotEmpty(message = "Email is required!")
     @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message="Please enter a valid email!")
     private String email;
-
-
-    @NotNull(message = "The date of birth is required.")
-    @Past(message = "The date of birth must be in the past.")
-    @AgeLimit(minimumAge = 10, message = "The minimum age to join is 10.")
-    private LocalDate birthDate;
 
     @NotEmpty(message="Password is required!")
     @Size(min=8, max=128, message="Password must be between 8 and 128 characters")

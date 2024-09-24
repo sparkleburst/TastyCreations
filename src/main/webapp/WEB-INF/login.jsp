@@ -64,13 +64,13 @@
                                     <form:errors path="email"/>
                                 </span>
                         </div>
-                        <div class="mb-0">
-                            <form:label class="form-label text-dark" path="birthDate" style="font-size: 0.9rem;">Date of Birth:</form:label>
-                            <form:input type="date" cssClass="form-control form-control-sm bg-white text-dark" path="birthDate" value="${savedDate}" style="height: 30px;"/>
-                            <span class="form-text text-warning">
-                                    <form:errors path="birthDate"/>
-                                </span>
-                        </div>
+<%--                        <div class="mb-0">--%>
+<%--                            <form:label class="form-label text-dark" path="birthDate" style="font-size: 0.9rem;">Date of Birth:</form:label>--%>
+<%--                            <form:input type="date" cssClass="form-control form-control-sm bg-white text-dark" path="birthDate" value="${savedDate}" style="height: 30px;"/>--%>
+<%--                            <span class="form-text text-warning">--%>
+<%--                                    <form:errors path="birthDate"/>--%>
+<%--                                </span>--%>
+<%--                        </div>--%>
                         <div class="mb-0">
                             <form:label class="form-label text-dark" path="password" style="font-size: 0.9rem;">Password:</form:label>
                             <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="password" style="height: 30px;"/>

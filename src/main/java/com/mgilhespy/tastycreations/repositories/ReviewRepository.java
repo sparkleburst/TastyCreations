@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
-    List<Review> findAllReviewsByRecipeId(Long recipeId);
+    List<Review> findAllReviewsByRecipeIdOrderByCreatedAtDesc(double recipeId);
 
     Optional<Review> findByRecipeIdAndReviewerId(double recipeId, Long userId);
 

@@ -29,7 +29,6 @@ public class UserController {
 
         if (result.hasErrors()) {
             model.addAttribute("loginUser", new LoginUser());
-            model.addAttribute("savedDate", newUser.getBirthDate());
             return "login";
         }
         session.setAttribute("userId", user.getId());
