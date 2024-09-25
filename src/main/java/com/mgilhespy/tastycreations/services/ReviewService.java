@@ -23,8 +23,8 @@ public class ReviewService {
         Optional<Review> review = reviewRepository.findById(reviewId);
         return review.orElse(null);
     }
-    public Review updateReview(Long id, Review review) {
-        Optional<Review> reviewOptional = reviewRepository.findById(id);
+    public Review updateReview(Long reviewId, Review review) {
+        Optional<Review> reviewOptional = reviewRepository.findById(reviewId);
         if (reviewOptional.isEmpty()) {
             return null;
         }
