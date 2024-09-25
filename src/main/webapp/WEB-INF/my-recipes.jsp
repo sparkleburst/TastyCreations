@@ -43,8 +43,11 @@
                         <h5 class="card-title text-center">${recipe.title}</h5>
                         <p class="card-text"><strong>Ready in:</strong> ${recipe.readyInMinutes} minutes</p>
                         <p class="card-text"><strong>Servings:</strong> ${recipe.servings}</p>
-                        <div class="mt-auto d-flex justify-content-center">
+                        <div class="mt-auto d-flex justify-content-center gap-2">
                             <a href="/recipes/${recipe.id}/information" class="btn btn-blur-2 btn-sm">View Details</a>
+                            <form action="/recipes/${recipe.id}/delete" method="post" class="d-inline-block">
+                                <button type="submit" class="text-danger btn btn-blur-3 btn-sm">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
