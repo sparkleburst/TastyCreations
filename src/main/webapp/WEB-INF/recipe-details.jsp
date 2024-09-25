@@ -25,7 +25,7 @@
 <div class="container">
     <nav class="navbar navbar-light navbar-blur py-0">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="/recipes/dashboard">
+            <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
 
