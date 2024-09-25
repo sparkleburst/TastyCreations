@@ -44,14 +44,16 @@
     <c:if test="${not empty response}">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
             <c:forEach var="recipe" items="${response}">
-                <div class="col d-flex align-items-stretch">
+                <div class="col">
                     <div class="card shadow card-blur h-100" style="border: none;">
-                        <img src="https://img.spoonacular.com/recipes/${recipe.image}" class="card-img-top" alt="${recipe.title}">
+                        <img src="https://img.spoonacular.com/recipes/${recipe.image}" class="card-img-top h-50" alt="${recipe.title}">
                         <div class="card-body  d-flex flex-column">
-                            <h5 class="card-title text-center">${recipe.title}</h5>
-                            <p class="card-text text-black">Ready in: ${recipe.readyInMinutes} minutes</p>
-                            <p class="card-text text-black">Servings: ${recipe.servings}</p>
-                            <a href="/recipes/${recipe.id}/information" class="btn btn-blur-2 btn-sm" target="_self">View Recipe Details</a>
+                            <h5 class="card-title text-center mb-3">${recipe.title}</h5>
+                            <p class="card-text text-black">Ready in: <fmt:formatNumber value="${recipe.readyInMinutes}" pattern="#"/> minutes</p>
+                            <p class="card-text text-black">Servings: <fmt:formatNumber value="${recipe.servings}" pattern="#"/></p>
+                            <div class="mt-auto d-flex justify-content-center">
+                                <a href="/recipes/${recipe.id}/information" class="btn btn-blur-2 btn-sm" target="_self">View Recipe Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
