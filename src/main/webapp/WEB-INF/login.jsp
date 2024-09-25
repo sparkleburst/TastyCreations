@@ -38,7 +38,7 @@
 <main class="container m-5">
     <div class="justify-content-center row gap-3">
         <div class="col-sm-4">
-            <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 500px;">
+            <div class="card card-blur shadow mb-3" style="padding: 8px;">
 
                 <div class="card-body p-3">
                     <h2 class="mb-2 text-dark">Register</h2>
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-            <div class="card card-blur shadow mb-3" style="padding: 8px; max-height: 400px;">
+            <div class="card card-blur shadow mb-3" style="padding: 8px; ">
                 <div class="card-body p-3">
                     <h2 class="mb-2 text-dark">Login</h2>
                     <form:form action="/login" method="post" modelAttribute="loginUser">
