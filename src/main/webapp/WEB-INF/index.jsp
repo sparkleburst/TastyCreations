@@ -30,82 +30,106 @@
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
                 <div class="d-flex">
-                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Login</a> <!-- this link goes to login.jsp -->
+                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;"
+                       href="/login">Login</a> <!-- this link goes to login.jsp -->
                 </div>
             </a>
         </div>
     </nav>
 </div>
-<main class="container mt-4">
-    <div class="row">
+<main class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row w-100 align-items-center">
         <!-- Left side content (you can add any content here) -->
-        <div class="col-md-5">
-            <h2 class="text-dark text-center" style="font-size: 2rem; font-family: 'Playpen Sans', sans-serif;">Your Guide to Creating Delicious Meals!</h2>
-            <ul class="text-dark text-center mt-lg-5" style="font-size: 1rem; font-family: 'Playpen Sans', sans-serif; list-style-type: none; padding-left: 0;">
-                <li>Find the perfect recipe.</li>
-                <li>Breakfast, lunch, or dinner.</li>
-                <li>Today, tomorrow, or every day.</li>
-            </ul>
-            <div class="mt-5 text-center">
-                <!-- this button goes to login.jsp -->
-                <form action="/login" method="get">
-                    <button type="submit" class="btn btn-lg btn-blur">Let's Start</button>
-                </form>
+        <div class="col-12 col-lg-4 d-flex flex-column justify-content-between" style="height: 100%;">
+            <!-- Heading near the top -->
+            <div class="card mt-3 border-0 w-100" style="background-color: transparent;">
+                <div class="card-body">
+                    <h2 class="text-dark text-center" style="font-size: 2rem; font-family: 'Playpen Sans', sans-serif;">
+                        Your Guide to Creating Delicious Meals!
+                    </h2>
+                </div>
             </div>
-            <div class="mt-5 text-center">
-                <button class="btn  btn-blur-2">The recipe of the day - no login required</button>
+
+            <!-- List centered vertically and horizontally -->
+            <div class="card d-flex justify-content-center align-items-center flex-grow-1 border-0 w-100"
+                 style="background-color: transparent;">
+                <div class="card-body">
+                    <ul class="text-dark text-center"
+                        style="font-size: 1rem; font-family: 'Playpen Sans', sans-serif; list-style-type: none; padding-left: 0;">
+                        <li>Find the perfect recipe.</li>
+                        <li>Breakfast, lunch, or dinner.</li>
+                        <li>Today, tomorrow, or every day.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Button near the bottom -->
+            <div class="card mt-auto mb-3 border-0 w-100" style="background-color: transparent;">
+                <div class="card-body text-center">
+                    <form action="/recipes/dashboard" method="get">
+                        <button type="submit" class="btn btn-lg btn-blur">Let's Start</button>
+                    </form>
+                </div>
             </div>
         </div>
-<%--test--%>
+
         <!-- Right side: Carousel -->
-        <div class="col-md-7">
+        <div class="col-12 col-lg-8">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active h-100">
-                        <img src="/images/Egg-White-Oatmeal2.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 1">
+                        <img src="/images/Egg-White-Oatmeal2.webp" class="d-block w-100 img-fluid rounded-5"
+                             alt="Slide 1">
                     </div>
                     <div class="carousel-item h-100">
                         <img src="/images/oatmeal.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 2">
                     </div>
                     <div class="carousel-item h-100">
-                        <img src="/images/Oatmeal-Recipe-4.webp" class="d-block w-100 img-fluid rounded-5" alt="Slide 3">
+                        <img src="/images/Oatmeal-Recipe-4.webp" class="d-block w-100 img-fluid rounded-5"
+                             alt="Slide 3">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
     </div>
-
 </main>
 
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24" style="fill: black;"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-                <span class="mb-3 mb-md-0 text-dark">© 2024 TastyCreations, Inc</span>
-            </div>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24" style="fill: black;">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-dark">© 2024 TastyCreations, Inc</span>
+        </div>
 
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex footer-icons">
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter text-dark"></i></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram text-dark"></i></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook text-dark"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex footer-icons">
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter text-dark"></i></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram text-dark"></i></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook text-dark"></i></a></li>
+        </ul>
+    </footer>
+</div>
 
 
 </body>

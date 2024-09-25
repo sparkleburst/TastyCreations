@@ -29,78 +29,96 @@
                 <img src="/images/Logo.webp" alt="" width="60" height="60" class="d-inline-block align-text-top">
                 <span class="text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;">Tasty Creations</span>
                 <div class="d-flex">
-                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/login">Login</a> <!-- this link goes to login.jsp -->
+                    <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;"
+                       href="/login">Login</a> <!-- this link goes to login.jsp -->
                 </div>
             </a>
         </div>
     </nav>
 </div>
-<main class="container m-5">
-    <div class="justify-content-center row gap-3">
-        <div class="col-sm-4">
+<main class="container p-5">
+    <div class="row">
+        <!-- Register Card -->
+        <div class="col-12 col-sm-6">
             <div class="card card-blur shadow mb-3" style="padding: 8px;">
 
-                <div class="card-body p-3">
+                <div class="card-body">
                     <h2 class="mb-2 text-dark">Register</h2>
                     <form:form action="/register" method="post" modelAttribute="newUser">
                         <div class="mb-0">
-                            <form:label class="form-label text-dark" path="firstName" style="font-size: 0.9rem;">First Name:</form:label>
-                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="firstName" style="height: 30px;"/>
+                            <form:label class="form-label text-dark" path="firstName"
+                                        style="font-size: 0.9rem;">First Name:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="firstName"
+                                        style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="firstName"/>
-                                </span>
+                            </span>
                         </div>
                         <div class="mb-0">
-                            <form:label class="form-label text-dark" path="lastName" style="font-size: 0.9rem;">Last Name:</form:label>
-                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="lastName" style="height: 30px;"/>
+                            <form:label class="form-label text-dark" path="lastName"
+                                        style="font-size: 0.9rem;">Last Name:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="lastName"
+                                        style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="lastName"/>
-                                </span>
+                            </span>
                         </div>
                         <div class="mb-0">
-                            <form:label class="form-label text-dark" path="email" style="font-size: 0.9rem;">Email:</form:label>
-                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="email" style="height: 30px;"/>
+                            <form:label class="form-label text-dark" path="email"
+                                        style="font-size: 0.9rem;">Email:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="email"
+                                        style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="email"/>
-                                </span>
+                            </span>
                         </div>
                         <div class="mb-0">
-                            <form:label class="form-label text-dark" path="password" style="font-size: 0.9rem;">Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="password" style="height: 30px;"/>
+                            <form:label class="form-label text-dark" path="password"
+                                        style="font-size: 0.9rem;">Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark"
+                                        path="password" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="password"/>
-                                </span>
+                            </span>
                         </div>
-                        <div class="mb-1">
-                            <form:label class="form-label text-dark" path="confirmPassword" style="font-size: 0.9rem;">Confirm Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="confirmPassword" style="height: 30px;"/>
+                        <div class="mb-3">
+                            <form:label class="form-label text-dark" path="confirmPassword"
+                                        style="font-size: 0.9rem;">Confirm Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark"
+                                        path="confirmPassword" style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="confirmPassword"/>
-                                </span>
+                            </span>
                         </div>
                         <button type="submit" class="btn btn-blur-2 btn-sm w-100">Register</button>
                     </form:form>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 ">
-            <div class="card card-blur shadow mb-3" style="padding: 8px; ">
-                <div class="card-body p-3">
+
+        <!-- Login Card -->
+        <div class="col-12 col-sm-6">
+            <div class="card card-blur shadow mb-3" style="padding: 8px;">
+                <div class="card-body">
                     <h2 class="mb-2 text-dark">Login</h2>
                     <form:form action="/login" method="post" modelAttribute="loginUser">
                         <div class="mb-0">
-                            <form:label class="form-label text-dark" path="loginEmail" style="font-size: 0.9rem;">Email:</form:label>
-                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="loginEmail" style="height: 30px;"/>
+                            <form:label class="form-label text-dark" path="loginEmail"
+                                        style="font-size: 0.9rem;">Email:</form:label>
+                            <form:input cssClass="form-control form-control-sm bg-white text-dark" path="loginEmail"
+                                        style="height: 30px;"/>
                             <span class="form-text text-warning">
                                     <form:errors path="loginEmail"/>
-                                </span>
+                            </span>
                         </div>
-                        <div class="mb-1">
-                            <form:label class="form-label text-dark" path="loginPassword" style="font-size: 0.9rem;">Password:</form:label>
-                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark" path="loginPassword" style="height: 30px;" />
+                        <div class="mb-3">
+                            <form:label class="form-label text-dark" path="loginPassword"
+                                        style="font-size: 0.9rem;">Password:</form:label>
+                            <form:input type="password" cssClass="form-control form-control-sm bg-white text-dark"
+                                        path="loginPassword" style="height: 30px;"/>
                             <span class="form-text text-warning">
-                <form:errors path="loginPassword"/>
-            </span>
+                                    <form:errors path="loginPassword"/>
+                            </span>
                         </div>
                         <button type="submit" class="btn btn-blur-2 btn-sm w-100">Login</button>
                     </form:form>
@@ -108,23 +126,27 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24" style="fill: black;"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-                <span class="mb-3 mb-md-0 text-dark">© 2024 TastyCreations, Inc</span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex footer-icons">
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter text-dark"></i></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram text-dark"></i></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook text-dark"></i></a></li>
-            </ul>
-        </footer>
-    </div>
 </main>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24" style="fill: black;">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-dark">© 2024 TastyCreations, Inc</span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex footer-icons">
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter text-dark"></i></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram text-dark"></i></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook text-dark"></i></a></li>
+        </ul>
+    </footer>
+</div>
+
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
