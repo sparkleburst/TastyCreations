@@ -48,5 +48,8 @@ public class ReviewService {
         return review;
     }
 
+    public List<Review> getReviewsByRecipeId(double recipeId) {
+        return reviewRepository.findAllReviewsByRecipeIdOrderByCreatedAtDesc(recipeId);
+    }
 
 }
