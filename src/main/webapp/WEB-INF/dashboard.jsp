@@ -40,7 +40,7 @@
 <main class="container mt-4">
     <h1 class="display-5 mb-3 mt-5 text-dark text-center">What would you like to cook today?</h1>
     <div class="card shadow card-blur mx-auto my-4 p-5">
-        <h1 class="display-6 mb-3 mt-5 text-dark">Find Recipes by Ingredients</h1>
+        <h1 class="display-6 mb-4 mt-5 text-dark">Find Recipes by Ingredients</h1>
 
         <!-- Recipe Search Form -->
         <form action="/recipes/search" method="get">
@@ -55,8 +55,6 @@
 
         </form>
     </div>
-
-
     <div class="card shadow card-blur mx-auto my-4 p-5">
         <form action="/recipes/complex-search" method="get">
             <div class="row">
