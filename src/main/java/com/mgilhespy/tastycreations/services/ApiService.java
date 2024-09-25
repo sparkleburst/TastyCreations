@@ -30,7 +30,7 @@ public class ApiService {
     private String apiKey;
 
     // Flag to control whether to use the mock API or the real API
-    private boolean useMockApi = true; // Set this to true to use mock data
+    private boolean useMockApi = false; // Set this to true to use mock data
 
     private final String BASE_URL = "https://api.spoonacular.com/recipes/";
 
