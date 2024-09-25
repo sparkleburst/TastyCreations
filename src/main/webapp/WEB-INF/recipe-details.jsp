@@ -42,7 +42,7 @@
   <h1 class="text-dark text-center" style="font-size: 2rem">${recipeInfo.title}</h1>
   <h6  class=" text-center text-muted"><span><strong><a class="text-decoration-none text-muted" href="#reviews">4 Reviews | </a></strong></span><strong>Average Rating:</strong>
     <c:choose>
-      <c:when test="${not empty averageRating}">
+      <c:when test="${averageRating != null and averageRating != 'No ratings yet'}">
 <%--        formatting a double to one decimal place--%>
         <fmt:formatNumber value="${averageRating}" pattern="#0.0" />
       </c:when>
