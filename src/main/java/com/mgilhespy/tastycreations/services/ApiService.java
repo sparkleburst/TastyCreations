@@ -89,9 +89,12 @@ public class ApiService {
     @Cacheable("recipes")
     public Object getRecipeInformation(long recipeId, boolean includeNutrition) throws ApiException {
         String url = BASE_URL + recipeId + "/information?includeNutrition=" + includeNutrition + "&apiKey=" + apiKey;
+        System.out.println(url);
+        System.out.println("url**************************");
 
         try {
             return restTemplate.getForObject(url, Object.class);  // Remember that you can map the response to a more specific object instead of Object.class
+
         } catch (Exception e) {
             throw new ApiException();
         }
