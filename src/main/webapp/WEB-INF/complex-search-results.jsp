@@ -46,7 +46,7 @@
             <c:forEach var="recipe" items="${response}">
                 <div class="col d-flex align-items-stretch">
                     <div class="card shadow card-blur h-100" style="border: none;">
-                        <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
+                        <img src="https://img.spoonacular.com/recipes/${recipe.image}" class="card-img-top" alt="${recipe.title}">
                         <div class="card-body  d-flex flex-column">
                             <h5 class="card-title text-center">${recipe.title}</h5>
                             <p class="card-text text-black">Ready in: ${recipe.readyInMinutes} minutes</p>
