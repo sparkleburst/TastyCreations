@@ -72,6 +72,30 @@ body {
     color: black !important;
 }
 
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #d3d3d3;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.rating input[type="radio"]:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #FFD700; /* Gold color */
+}
+
+
 /* Ensure the page fills the full height */
 html, body {
     height: 100%;

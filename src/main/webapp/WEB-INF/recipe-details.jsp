@@ -50,15 +50,18 @@
         <c:choose>
             <c:when test="${averageRating > 0}">
                 <%--        formatting a double to one decimal place--%>
-                <fmt:formatNumber value="${averageRating}" pattern="#0.0"/>
+                <strong>
+                    <fmt:formatNumber value="${averageRating}" pattern="#0.0"/>
+                </strong>
+                <strong> | </strong>
             </c:when>
             <c:otherwise>
-                No ratings yet
+                <strong>0 |</strong>
             </c:otherwise>
         </c:choose>
 
         <!-- Display the total number of likes -->
-        <span class="ms-2">${likeCount} Likes</span>
+        <span class="ms-2"><strong>${likeCount} Likes</strong> </span>
 
     </h6>
     <c:if test="${not empty param.error}">
@@ -90,47 +93,52 @@
 
             <h3>Instructions</h3>
             <p>${recipeInfo.instructions}</p>
-            <div class="text-start">
-                <a href="${recipeInfo.sourceUrl}" class="btn btn-blur-2 btn-sm" target="_blank">View Full Recipe</a>
+
+            <div class="d-flex justify-content-between align-items-center mt-2 mt-sm-0">
+                <div>
+                    <a href="${recipeInfo.sourceUrl}" class="btn btn-blur-2 btn-sm" target="_blank">View Full Recipe</a>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post" id="ratingForm"
+                          class="d-flex align-items-center">
+                        <div class="rate mt-3 d-flex mb-3">
+                            <div class="rating d-flex">
+                                <input type="radio" name="score" value="5" id="star5" onchange="submitRating()"/><label
+                                    for="star5">☆</label>
+                                <input type="radio" name="score" value="4" id="star4" onchange="submitRating()"/><label
+                                    for="star4">☆</label>
+                                <input type="radio" name="score" value="3" id="star3" onchange="submitRating()"/><label
+                                    for="star3">☆</label>
+                                <input type="radio" name="score" value="2" id="star2" onchange="submitRating()"/><label
+                                    for="star2">☆</label>
+                                <input type="radio" name="score" value="1" id="star1" onchange="submitRating()"/><label
+                                    for="star1">☆</label>
+                            </div>
+                            <input type="hidden" name="raterId" value="${user.id}"/>
+                        </div>
+                    </form>
+                    <form action="/recipes/${recipeInfo.id}/save" method="post" class="d-flex align-items-center">
+                        <input type="hidden" name="recipeId" value="${recipeInfo.id}">
+                        <input type="hidden" name="userId" value="${userId}">
+                        <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Save to My Recipe</button>
+                    </form>
+                    <!-- Like/Unlike Button Form -->
+                    <c:choose>
+                        <c:when test="${hasUserLikedRecipe}">
+                            <form action="/likes/recipes/${recipeInfo.id}/unlike" method="post">
+                                <input type="hidden" name="likerId" value="${user.id}">
+                                <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Unlike 💔</button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <form action="/likes/recipes/${recipeInfo.id}/like" method="post">
+                                <input type="hidden" name="likerId" value="${user.id}">
+                                <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Like ❤️</button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
-            <div class="d-flex justify-content-end align-items-center mt-2 mt-sm-0">
-                <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post" class="d-flex align-items-center">
-                    <label for="ratingDropdown" class="me-2 mb-0">Rate:</label>
-                    <select name="score" id="ratingDropdown" class="form-select form-select-sm" style="width: auto;">
-                        <option value="" disabled selected>Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <input type="hidden" name="raterId" value="${user.id}">
-                    <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
-                </form>
-                <form action="/recipes/${recipeInfo.id}/save" method="post" class="d-flex align-items-center">
-                    <input type="hidden" name="recipeId" value="${recipeInfo.id}">
-                    <input type="hidden" name="userId" value="${userId}">
-                    <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Save to My Recipe</button>
-                </form>
-
-                <!-- Like/Unlike Button Form -->
-                <c:choose>
-                    <c:when test="${hasUserLikedRecipe}">
-                        <form action="/likes/recipes/${recipeInfo.id}/unlike" method="post">
-                            <input type="hidden" name="likerId" value="${user.id}">
-                            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Unlike 💔</button>
-                        </form>
-                    </c:when>
-                    <c:otherwise>
-                        <form action="/likes/recipes/${recipeInfo.id}/like" method="post">
-                            <input type="hidden" name="likerId" value="${user.id}">
-                            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Like ❤️</button>
-                        </form>
-                    </c:otherwise>
-                </c:choose>
-
-            </div>
-
         </div>
     </div>
     <h3>Reviews (${reviews.size()})</h3>
@@ -230,6 +238,10 @@
         if (button) {
             button.style.display = 'none';
         }
+    }
+
+    function submitRating() {
+        document.getElementById("ratingForm").submit();
     }
 </script>
 </body>

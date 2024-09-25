@@ -1,5 +1,6 @@
 package com.mgilhespy.tastycreations.controllers;
 
+import com.mgilhespy.tastycreations.models.Rating;
 import com.mgilhespy.tastycreations.models.Recipe;
 import com.mgilhespy.tastycreations.models.Review;
 import com.mgilhespy.tastycreations.models.User;
@@ -199,6 +200,7 @@ public class RecipeController {
             model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeId, userId));
 
             model.addAttribute("reviews", reviewService.getReviewsByRecipeId(recipeId));
+            model.addAttribute("rating", new Rating());
 
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
