@@ -102,6 +102,24 @@ public String saveRecipe(@PathVariable double recipeId, HttpSession session, Red
 
     return "redirect:/recipes/" + userId; // Redirect back to the details page
 }
+    @PostMapping("/recipes/{recipeId}/delete")
+    public String deleteRecipe(@PathVariable double recipeId, HttpSession session, RedirectAttributes redirectAttributes) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            User user = userService.findUserById(userId);
+
+            // Check if the recipe exists for the user
+            myRecipeService.deleteByUserAndRecipeId(user, recipeId);
+
+            redirectAttributes.addFlashAttribute("message", "Recipe deleted successfully!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "You must be logged in to delete a recipe.");
+        }
+
+        return "redirect:/recipes/" + userId;
+    }
+
+
 
 
 

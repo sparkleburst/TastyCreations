@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MyRecipeService {
@@ -24,5 +25,10 @@ public class MyRecipeService {
 
     public boolean isRecipeAlreadySavedByUser(User user, double recipeId) {
         return myRecipeRepository.findByUserAndRecipeId(user, recipeId).isPresent();
+    }
+
+    public void deleteByUserAndRecipeId(User user, double recipeId) {
+        Optional<MyRecipe> myRecipe = myRecipeRepository.findByUserAndRecipeId(user, recipeId);
+        myRecipe.ifPresent(myRecipeRepository::delete);
     }
 }
