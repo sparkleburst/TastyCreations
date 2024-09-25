@@ -48,7 +48,7 @@
         <c:if test="${not empty response}">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
                 <c:forEach var="recipe" items="${response}">
-                        <div class="col d-flex align-items-stretch">
+                        <div class="col">
                             <div class="card shadow card-blur h-100" style="border: none;">
                                 <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
                                 <div class="card-body d-flex flex-column">
