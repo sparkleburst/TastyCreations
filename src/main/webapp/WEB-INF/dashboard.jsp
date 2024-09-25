@@ -36,7 +36,8 @@
             </a>
         </div>
     </nav>
-</div><main class="container mt-4">
+</div>
+<main class="container mt-4">
     <h1 class="display-5 mb-3 mt-5 text-dark text-center">What would you like to cook today?</h1>
     <div class="card shadow card-blur mx-auto my-4 p-5">
         <h1 class="display-6 mb-3 mt-5 text-dark">Find Recipes by Ingredients</h1>
@@ -57,15 +58,14 @@
 
 
     <div class="card shadow card-blur mx-auto my-4 p-5">
-<%--        <h1 class="display-6 mb-3 mt-5 text-dark">Complex Search</h1>--%>
         <form action="/recipes/complex-search" method="get">
-            <div class="d-flex justify-content-between">
-                <div class="mb-3">
+            <div class="row">
+                <div class="mb-3 col-12 col-lg-4 col-sm-6 col-md-6">
                     <label for="query" class="form-label text-dark">Enter dish name:</label>
                     <input type="text" class="form-control bg-white text-dark" id="query" name="query" placeholder="e.g., burger">
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 col-12 col-lg-4 col-sm-6 col-md-6">
                     <label for="cuisine" class="form-label text-dark">Choose cuisine:</label>
                     <select class="form-select bg-white text-dark" id="cuisine" name="cuisine">
                         <option value="" selected disabled>Select cuisine</option>
@@ -98,7 +98,7 @@
                         <option value="vietnamese">Vietnamese</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 col-12 col-lg-4 col-sm-6 col-md-6">
                     <label for="diet" class="form-label text-dark">Choose diet:</label>
                     <select class="form-select bg-white text-dark" id="diet" name="diet">
                         <option value="" selected disabled>Select diet</option>
@@ -111,7 +111,7 @@
                         <option value="primal">Primal</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 col-12 col-lg-6 col-sm-6 col-md-6">
                     <label for="intolerances" class="form-label text-dark">Choose intolerances:</label>
                     <select class="form-select bg-white text-dark" id="intolerances" name="intolerances">
                         <option value="" selected disabled>Select intolerances</option>
@@ -128,7 +128,7 @@
                         <option value="wheat">Wheat</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 col-12 col-lg-6 col-sm-12 col-md-12">
                     <label for="excludeIngredients" class="form-label text-dark">Enter ingredients to exclude
                         (comma-separated):</label>
                     <input type="text" class="form-control bg-white text-dark" id="excludeIngredients" name="excludeIngredients"
