@@ -83,19 +83,35 @@
           <a href="${recipeInfo.sourceUrl}" class="btn btn-blur-2 btn-sm" target="_blank">View Full Recipe</a>
         </div>
         <div class="d-flex justify-content-end align-items-center mt-2 mt-sm-0">
-          <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post" class="d-flex align-items-center">
-            <label for="ratingDropdown" class="me-2 mb-0">Rate:</label>
-            <select name="score" id="ratingDropdown" class="form-select form-select-sm" style="width: auto;">
-              <option value="" disabled selected>Select</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <input type="hidden" name="raterId" value="${user.id}">
-            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
+          <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post"  class="d-flex align-items-center">
+            <div class="rate mt-3">
+              <div class="rating d-flex">
+                <input type="radio" name="score" value="5" id="star5" /><label for="star5">☆</label>
+                <input type="radio" name="score" value="4" id="star4" /><label for="star4">☆</label>
+                <input type="radio" name="score" value="3" id="star3" /><label for="star3">☆</label>
+                <input type="radio" name="score" value="2" id="star2" /><label for="star2">☆</label>
+                <input type="radio" name="score" value="1" id="star1" /><label for="star1">☆</label>
+              </div>
+              <input type="hidden" name="raterId" value="${user.id}"/>
+              <div class="buttons px-4 mt-0">
+                <button type="submit" class="btn btn-warning btn-block rating-submit">Submit</button>
+              </div>
+            </div>
           </form>
+
+        <%--          <form action="/ratings/recipes/${recipeInfo.id}/rate" method="post" class="d-flex align-items-center">--%>
+<%--            <label for="ratingDropdown" class="me-2 mb-0">Rate:</label>--%>
+<%--            <select name="score" id="ratingDropdown" class="form-select form-select-sm" style="width: auto;">--%>
+<%--              <option value="" disabled selected>Select</option>--%>
+<%--              <option value="1">1</option>--%>
+<%--              <option value="2">2</option>--%>
+<%--              <option value="3">3</option>--%>
+<%--              <option value="4">4</option>--%>
+<%--              <option value="5">5</option>--%>
+<%--            </select>--%>
+<%--            <input type="hidden" name="raterId" value="${user.id}">--%>
+<%--            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>--%>
+<%--          </form>--%>
           <form action="/recipes/${recipeInfo.id}/save" method="post" class="d-flex align-items-center">
             <input type="hidden" name="recipeId" value="${recipeInfo.id}">
             <input type="hidden" name="userId" value="${userId}">
