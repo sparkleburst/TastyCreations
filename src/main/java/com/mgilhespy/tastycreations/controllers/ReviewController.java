@@ -57,8 +57,8 @@ public class ReviewController {
         reviewService.createReview(review);
         return "redirect:/recipes/" + recipeId + "/information";
     }
-    @PostMapping("/recipes/{recipeId}/reviews/update")
-    public String updateReview(@PathVariable double recipeId, @Valid @ModelAttribute("review") Review review, BindingResult result, HttpSession session, Model model) throws ApiException {
+    @PostMapping("/recipes/{recipeId}/reviews/{reviewId}/update")
+    public String updateReview(@PathVariable Long reviewId, @PathVariable double recipeId, @Valid @ModelAttribute("review") Review review, BindingResult result, HttpSession session, Model model) throws ApiException {
         if(session.getAttribute("userId") == null) {
             return "redirect:/";
         }
@@ -68,19 +68,24 @@ public class ReviewController {
             long recipeIdL = Double.valueOf(recipeId).longValue();
 
             Object recipeInfo = apiService.getRecipeInformation(recipeIdL, false);
-            System.out.println(recipeInfo);
             model.addAttribute("recipeInfo", recipeInfo);
 
+
             Double averageRating = ratingService.getAverageRating((double) recipeId);
-            model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
+            model.addAttribute("averageRating", averageRating != null ? averageRating : 0.0);
 
             User user= userService.findUserById(userId);
-            model.addAttribute("user", user);;
+            model.addAttribute("user", user);
+
+            model.addAttribute("hasReviewed", reviewService.hasUserReviewedRecipe(recipeId, userId));
+            model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeIdL, userId));
+
+            model.addAttribute("reviews", reviewService.getReviewsByRecipeId(recipeId));
 
 
             return "recipe-details";
         }
-        reviewService.updateReview(review);
+        reviewService.updateReview(reviewId, review);
         return "redirect:/recipes/" + recipeId + "/information";
     }
 

@@ -111,6 +111,26 @@
     <c:choose>
         <c:when test="${hasReviewed}">
             <p>${userReview.content}</p>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-blur-2 btn-sm ms-2" onclick="toggleEditForm()">Edit Review</button>
+          </div>
+
+          <div id="editReviewForm" style="display:none; margin-top: 10px;">
+            <form:form action="/recipes/${recipeInfo.id}/reviews/${userReview.id}/update" method="post" modelAttribute="userReview">
+              <form:hidden path="reviewer" value="${user.id}"/>
+              <form:hidden path="recipeId" value="${recipeInfo.id}"/>
+
+              <div class="mb-3">
+                <form:textarea path="content" cssClass="form-control" placeholder="Edit your review" />
+                <span class="form-text text-warning">
+                <form:errors path="content" />
+            </span>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Update Review</button>
+              </div>
+            </form:form>
+          </div>
         </c:when>
         <c:otherwise>
           <form:form action="/recipes/${recipeInfo.id}/reviews/create" method="post" modelAttribute="review">
@@ -166,5 +186,15 @@
   </footer>
 </div>
 <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+<script>
+  function toggleEditForm() {
+    var editForm = document.getElementById("editReviewForm");
+    if (editForm.style.display === "none") {
+      editForm.style.display = "block";
+    } else {
+      editForm.style.display = "none";
+    }
+  }
+</script>
 </body>
 </html>
