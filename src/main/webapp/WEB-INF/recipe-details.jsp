@@ -40,10 +40,10 @@
 </div>
 <div class="container mt-5">
   <h1 class="text-dark text-center" style="font-size: 2rem">${recipeInfo.title}</h1>
-  <h6  class=" text-center text-muted"><span><strong><a class="text-decoration-none text-muted" href="#reviews">4 Reviews | </a></strong></span><strong>Average Rating:</strong>
+  <h6  class=" text-center text-muted"><span><strong><a class="text-decoration-none text-muted" href="#reviews">${reviews.size()} Reviews | </a></strong></span><strong>Average Rating:</strong>
     <c:choose>
-      <c:when test="${averageRating != null and averageRating != 'No ratings yet'}">
-<%--        formatting a double to one decimal place--%>
+      <c:when test="${averageRating > 0}">
+        <%--        formatting a double to one decimal place--%>
         <fmt:formatNumber value="${averageRating}" pattern="#0.0" />
       </c:when>
       <c:otherwise>
@@ -104,8 +104,8 @@
 
       </div>
       </div>
-  <h3>Reviews (4)</h3>
-  <div class="card card-blur shadow mb-3" id="reviews">
+  <h3>Reviews (${reviews.size()})</h3>
+  <div class="card card-blur shadow mb-5" id="reviews">
     <h5>My Review</h5>
     <c:choose>
         <c:when test="${hasReviewed}">
@@ -127,7 +127,22 @@
           </form:form>
         </c:otherwise>
     </c:choose>
-
+    <c:choose>
+        <c:when test="${reviews == null or reviews.size() == 0}">
+          <p>No reviews yet</p>
+        </c:when>
+        <c:otherwise>
+          <div class="card card-blur shadow mb-3 mt-3">
+            <c:forEach var="review" items="${reviews}">
+              <div class="mb-3">
+                <p><strong>${review.reviewer.firstName}</strong></p>
+                <p><fmt:formatDate value="${review.createdAt}" pattern="MMMM dd, yyyy" /></p>
+                <p>${review.content}</p>
+              </div>
+            </c:forEach>
+          </div>
+        </c:otherwise>
+    </c:choose>
   </div>
 </div>
 
