@@ -42,44 +42,48 @@
 <main class="container">
 
     <!-- Display the API Response (formatted) -->
-    <div class="mt-5">
-        <h2>Recipe Search Results:</h2>
+    <div class="container mt-5">
+        <h1 class="text-dark text-center" style="font-size: 2rem">Recipe Search Results:</h1>
 
         <c:if test="${not empty response}">
-            <div class="row">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
                 <c:forEach var="recipe" items="${response}">
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${recipe.title}</h5>
-                                <p class="card-text">Used ingredients: ${recipe.usedIngredientCount}</p>
-                                <p class="card-text">Missing ingredients: ${recipe.missedIngredientCount}</p>
+                        <div class="col d-flex align-items-stretch">
+                            <div class="card shadow card-blur h-100" style="border: none;">
+                                <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center">${recipe.title}</h5>
+                                    <p class="card-text text-black">Used ingredients: ${recipe.usedIngredientCount}</p>
+                                    <p class="card-text text-black">Missing ingredients: ${recipe.missedIngredientCount}</p>
 
-                                <!-- List the used ingredients -->
-                                <h6>Used Ingredients:</h6>
-                                <ul>
-                                    <c:forEach var="usedIngredient" items="${recipe.usedIngredients}">
-                                        <li>${usedIngredient.original} <img src="${usedIngredient.image}" alt="${usedIngredient.name}" style="width: 30px; height: 30px;"></li>
-                                    </c:forEach>
-                                </ul>
+                                    <!-- List the used ingredients -->
+                                    <h6 class="text-black">Used Ingredients:</h6>
+                                    <ul>
+                                        <c:forEach var="usedIngredient" items="${recipe.usedIngredients}">
+                                            <li class="text-dark">${usedIngredient.original} <img src="${usedIngredient.image}" alt="${usedIngredient.name}" style="width: 30px; height: 30px;"></li>
+                                        </c:forEach>
+                                    </ul>
 
-                                <!-- List the missed ingredients -->
-                                <h6>Missing Ingredients:</h6>
-                                <ul>
-                                    <c:forEach var="missedIngredient" items="${recipe.missedIngredients}">
-                                        <li>${missedIngredient.original} <img src="${missedIngredient.image}" alt="${missedIngredient.name}" style="width: 30px; height: 30px;"></li>
-                                    </c:forEach>
-                                </ul>
+                                    <!-- List the missed ingredients -->
+                                    <h6 class="text-black">Missing Ingredients:</h6>
+                                    <ul>
+                                        <c:forEach var="missedIngredient" items="${recipe.missedIngredients}">
+                                            <li class="text-dark">${missedIngredient.original} <img src="${missedIngredient.image}" alt="${missedIngredient.name}" style="width: 30px; height: 30px;"></li>
+                                        </c:forEach>
+                                    </ul>
 
-                                <!-- Link to the recipe-details page -->
-                                <a href="/recipes/${recipe.id}/information" class="btn btn-primary" target="_self">View Recipe Details</a>
+                                    <!-- Link to the recipe-details page -->
+                                    <div class="mt-auto d-flex justify-content-center">
+                                        <a href="/recipes/${recipe.id}/information" class="btn btn-blur-2 btn-sm" target="_self">View Recipe Details</a>
+
+                                    </div>
 
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+            </div>
             </div>
         </c:if>
     </div>
