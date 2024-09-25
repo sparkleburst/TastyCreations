@@ -51,7 +51,6 @@
       </c:otherwise>
     </c:choose>
   </h6>
-  <c:if test="${not empty param.error}">
     <div class="alert alert-warning text-center mt-3">
       <c:choose>
         <c:when test="${param.error == 'alreadyRated'}">
