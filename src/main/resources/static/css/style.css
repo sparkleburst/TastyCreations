@@ -68,5 +68,9 @@ body {
     padding: 20px; /* Add padding to make the content inside the card look better */
 }
 
+.text-black, .card-title, .btn, .navbar .nav-link, .footer-icons svg use {
+    color: black !important;
+}
+
 
 
