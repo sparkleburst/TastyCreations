@@ -150,12 +150,10 @@ public class RecipeController {
         try {
             // Convert recipeIdString (e.g., "632660.0") to long by splitting at the decimal point and parsing the integer part
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
-            System.out.println(recipeId);
-            System.out.println("recipeId**************************");
+
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
             model.addAttribute("recipeInfo", recipeInfo);
-            System.out.println(recipeInfo);
-            System.out.println("recipeInfo**************************");
+
 
             Double averageRating = ratingService.getAverageRating((double) recipeId);
             model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
