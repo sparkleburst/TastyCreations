@@ -183,13 +183,15 @@ public class RecipeController {
 
 
             Double averageRating = ratingService.getAverageRating((double) recipeId);
-            model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
+            model.addAttribute("averageRating", averageRating != null ? averageRating : 0.0);
 
             User user= userService.findUserById(userId);
             model.addAttribute("user", user);
 
             model.addAttribute("hasReviewed", reviewService.hasUserReviewedRecipe(recipeId, userId));
             model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeId, userId));
+
+            model.addAttribute("reviews", reviewService.getReviewsByRecipeId(recipeId));
 
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
