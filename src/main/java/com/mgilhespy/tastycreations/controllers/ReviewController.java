@@ -34,13 +34,11 @@ public class ReviewController {
 
     @PostMapping("/recipes/{recipeId}/reviews/create")
     public String createReview(@PathVariable double recipeId, @Valid @ModelAttribute("review") Review review, BindingResult result, HttpSession session, Model model) throws ApiException {
-        System.out.println("========Method was triggered=============");
         Long userId = (Long) session.getAttribute("userId");
         if(userId == null) {
             return "redirect:/login";
         }
         if(result.hasErrors()) {
-            System.out.println("=================the form has errors====================");
             long recipeIdL = Double.valueOf(recipeId).longValue();
 
             Object recipeInfo = apiService.getRecipeInformation(recipeIdL, false);
@@ -56,15 +54,35 @@ public class ReviewController {
 
             return "recipe-details";
         }
-        System.out.println("===========Form does not have===============");
         reviewService.createReview(review);
         return "redirect:/recipes/" + recipeId + "/information";
     }
+    @PostMapping("/recipes/{recipeId}/reviews/update")
+    public String updateReview(@PathVariable double recipeId, @Valid @ModelAttribute("review") Review review, BindingResult result, HttpSession session, Model model) throws ApiException {
+        if(session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        Long userId = (Long) session.getAttribute("userId");
+
+        if(result.hasErrors()) {
+            long recipeIdL = Double.valueOf(recipeId).longValue();
+
+            Object recipeInfo = apiService.getRecipeInformation(recipeIdL, false);
+            System.out.println(recipeInfo);
+            model.addAttribute("recipeInfo", recipeInfo);
+
+            Double averageRating = ratingService.getAverageRating((double) recipeId);
+            model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");
+
+            User user= userService.findUserById(userId);
+            model.addAttribute("user", user);;
 
 
-
-
-
+            return "recipe-details";
+        }
+        reviewService.updateReview(review);
+        return "redirect:/recipes/" + recipeId + "/information";
+    }
 
 
 }
