@@ -3,10 +3,7 @@ package com.mgilhespy.tastycreations.controllers;
 import com.mgilhespy.tastycreations.models.Recipe;
 import com.mgilhespy.tastycreations.models.Review;
 import com.mgilhespy.tastycreations.models.User;
-import com.mgilhespy.tastycreations.services.ApiService;
-import com.mgilhespy.tastycreations.services.RatingService;
-import com.mgilhespy.tastycreations.services.ReviewService;
-import com.mgilhespy.tastycreations.services.UserService;
+import com.mgilhespy.tastycreations.services.*;
 import com.spoonacular.client.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +32,9 @@ public class RecipeController {
 
     @Autowired
     RatingService ratingService;
+
+    @Autowired
+    private LikeService likeService;
 
     @Autowired
     private CacheManager cacheManager;  // Inject Spring's CacheManager
@@ -181,12 +181,19 @@ public class RecipeController {
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
             model.addAttribute("recipeInfo", recipeInfo);
 
-
             Double averageRating = ratingService.getAverageRating((double) recipeId);
             model.addAttribute("averageRating", averageRating != null ? averageRating : 0.0);
 
+            // Fetch the recipe and like count
+            Long likeCount = likeService.getLikeCountForRecipe(recipeId);
+            model.addAttribute("likeCount", likeCount);
+
             User user= userService.findUserById(userId);
             model.addAttribute("user", user);
+
+            // Check if the user has liked the recipe
+            boolean hasUserLikedRecipe = likeService.hasUserLikedRecipe(recipeId, userId);
+            model.addAttribute("hasUserLikedRecipe", hasUserLikedRecipe);
 
             model.addAttribute("hasReviewed", reviewService.hasUserReviewedRecipe(recipeId, userId));
             model.addAttribute("userReview", reviewService.findByRecipeIdAndReviewerId(recipeId, userId));
