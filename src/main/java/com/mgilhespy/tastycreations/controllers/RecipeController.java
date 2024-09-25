@@ -179,8 +179,8 @@ public class RecipeController {
             long recipeId = Long.parseLong(recipeIdString.split("\\.")[0]);
 
             Object recipeInfo = apiService.getRecipeInformation(recipeId, false);
-            System.out.println(recipeInfo);
             model.addAttribute("recipeInfo", recipeInfo);
+
 
             Double averageRating = ratingService.getAverageRating((double) recipeId);
             model.addAttribute("averageRating", averageRating != null ? averageRating : "No ratings yet");

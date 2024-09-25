@@ -96,6 +96,11 @@
             <input type="hidden" name="raterId" value="${user.id}">
             <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Submit</button>
           </form>
+          <form action="/recipes/${recipeInfo.id}/save" method="post" class="d-flex align-items-center">
+            <input type="hidden" name="recipeId" value="${recipeInfo.id}">
+            <input type="hidden" name="userId" value="${userId}">
+            <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Save to My Recipe</button>
+          </form>
         </div>
 
       </div>

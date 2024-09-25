@@ -14,7 +14,7 @@ public class RatingService {
     @Autowired
     private RatingRepository ratingRepo;
 
-    // Create or update a rating
+
     public Rating addRating(Rating rating) {
         // Check if the user has already rated this recipe
         Optional<Rating> existingRating = ratingRepo.findByRecipeIdAndRaterId(rating.getRecipeId(), rating.getRater().getId());
