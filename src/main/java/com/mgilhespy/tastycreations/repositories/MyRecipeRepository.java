@@ -13,4 +13,5 @@ public interface MyRecipeRepository extends CrudRepository<MyRecipe, Long> {
 
     List<MyRecipe> findByUser(User user);
     Optional<MyRecipe> findByUserAndRecipeId(User user, double recipeId);
+
 }
