@@ -140,3 +140,18 @@ footer {
     font-size: 0.75rem; /* Smaller font size */
 }
 
+.filled {
+    color: gold;
+}
+.empty {
+    color: gray;
+}
+.star-rating {
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+.star-rating span {
+    display: inline-block;
+}
+

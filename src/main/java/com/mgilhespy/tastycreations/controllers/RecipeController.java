@@ -202,6 +202,9 @@ public class RecipeController {
             model.addAttribute("reviews", reviewService.getReviewsByRecipeId(recipeId));
             model.addAttribute("rating", new Rating());
 
+            model.addAttribute("hasRated", ratingService.hasUserRatedRecipe(recipeId, userId));
+            model.addAttribute("userRating", ratingService.getUserRating(recipeId, userId));
+
         } catch (ApiException e) {
             model.addAttribute("error", "Error fetching recipe information: " + e.getMessage());
         } catch (NumberFormatException e) {

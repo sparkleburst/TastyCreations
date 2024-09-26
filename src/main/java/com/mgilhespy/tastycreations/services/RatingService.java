@@ -38,4 +38,7 @@ public class RatingService {
         return ratingRepo.findByRecipeIdAndRaterId(recipeId, raterId).isPresent();
     }
 
+    public Object getUserRating(double recipeId, Long userId) {
+        return ratingRepo.findByRecipeIdAndRaterId(recipeId, userId).orElse(null);
+    }
 }
