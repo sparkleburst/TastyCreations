@@ -33,10 +33,9 @@
                     <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;"
                        href="/recipes/dashboard">Dashboard</a>
                     <a class="nav-link text-dark" style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;"
-                       href="/recipes/${user.id}">My recipes</a> <!-- this link goes to login.jsp -->
+                       href="/recipes/${user.id}">My recipes</a>
                     <a class="nav-link text-dark ms-3"
                        style="font-size: .9rem; font-family: 'Playpen Sans', sans-serif;" href="/logout">Logout</a>
-                    <!-- this link goes to login.jsp -->
                 </div>
             </a>
         </div>
@@ -103,23 +102,34 @@
                           class="d-flex align-items-center">
                         <div class="rate mt-3 d-flex mb-3">
                             <div class="rating d-flex">
-                                <input type="radio" name="score" value="5" id="star5" onchange="submitRating()"/><label
-                                    for="star5">☆</label>
-                                <input type="radio" name="score" value="4" id="star4" onchange="submitRating()"/><label
-                                    for="star4">☆</label>
-                                <input type="radio" name="score" value="3" id="star3" onchange="submitRating()"/><label
-                                    for="star3">☆</label>
-                                <input type="radio" name="score" value="2" id="star2" onchange="submitRating()"/><label
-                                    for="star2">☆</label>
-                                <input type="radio" name="score" value="1" id="star1" onchange="submitRating()"/><label
-                                    for="star1">☆</label>
+                                <c:choose>
+                                    <c:when test="${hasRated}">
+                                        <p class="mt-2 mx-2 star-rating" style="font-size: 1.5rem;">
+                                            <c:forEach var="i" begin="1" end="5">
+                                                <span class="${i <= userRating.score ? 'filled' : 'empty'}">☆</span>
+                                            </c:forEach>
+                                        </p>
+                                    </c:when>
+                                    <c:otherwise>
+                                            <input type="radio" name="score" value="5" id="star5" onchange="submitRating()"/><label
+                                                for="star5">☆</label>
+                                            <input type="radio" name="score" value="4" id="star4" onchange="submitRating()"/><label
+                                                for="star4">☆</label>
+                                            <input type="radio" name="score" value="3" id="star3" onchange="submitRating()"/><label
+                                                for="star3">☆</label>
+                                            <input type="radio" name="score" value="2" id="star2" onchange="submitRating()"/><label
+                                                for="star2">☆</label>
+                                            <input type="radio" name="score" value="1" id="star1" onchange="submitRating()"/><label
+                                                for="star1">☆</label>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <input type="hidden" name="raterId" value="${user.id}"/>
                         </div>
                     </form>
                     <form action="/recipes/${recipeInfo.id}/save" method="post" class="d-flex align-items-center">
                         <input type="hidden" name="recipeId" value="${recipeInfo.id}">
-                        <input type="hidden" name="userId" value="${userId}">
+                        <input type="hidden" name="userId" value="${user.id}">
                         <button type="submit" class="btn btn-blur-2 btn-sm ms-2">Save to My Recipe</button>
                     </form>
                     <!-- Like/Unlike Button Form -->
